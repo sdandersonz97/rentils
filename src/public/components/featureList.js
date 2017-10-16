@@ -6,7 +6,7 @@ import Feature from './feature'
 import '../styles/publicStyles.css'
 const Features = () => {
     return(
-        <section className='featureListContainer'>
+        <section className='featureListContainer row'>
             <Feature 
                 img={strategy} 
                 title='Explore'
