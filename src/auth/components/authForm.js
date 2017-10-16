@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardBody } from '../../common'
 import PropTypes from 'prop-types'
+
 const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup }) => {
     return(
         <Card size={6}>
@@ -10,7 +11,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                             <label>Email: </label>
                             <input
                                 className='form-control'
-                                onChange={({target})=>onInputChange('email', target.value)}
+                                onChange={({ target }) => onInputChange('email', target.value)}
                                 type='text'
                                 value={email}
                             />
@@ -23,7 +24,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 className='form-control'
                                 type='text'
                                 value={password}
-                                onChange={({target})=>onInputChange('password', target.value)}
+                                onChange={({ target }) => onInputChange('password', target.value)}
                             />
                             <div className='invalid-feedback'>
                             </div>
@@ -34,7 +35,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 <input
                                     className='form-control'
                                     type='text'
-                                    onChange={({target})=>onInputChange('confirmPassword', target.value)}
+                                    onChange={({ target }) => onInputChange('confirmPassword', target.value)}
                                 />
                                 <div className='invalid-feedback'>
                                 </div>

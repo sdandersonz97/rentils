@@ -7,7 +7,7 @@ export const authUser = ({ email,password }, cb) => dispatch =>
             dispatch({
                 type: AUTH_USER
             })
-
+            isAdmin(cb, user.uid)
         })
         .catch(error => {
             dispatch({
@@ -15,17 +15,18 @@ export const authUser = ({ email,password }, cb) => dispatch =>
                 payload:error
             })
         })
-
-const isAdmin = cb => usersRef().child(user.uid)
-    .once('value', snap => {
-        const path = {
-            isAdmin: snap.val().admin,
-            companyUrl: snap.val().companyId
-        }
-        return path
-    
-    })
-    .then(({ isAdmin, companyUrl }) => {
-        const index = `${isAdmin ? `/company/${companyUrl}/admin` : `/company/${companyUrl}/user`}`
-        cb(index)
-    }) 
+        
+const isAdmin = (cb, uid) => {
+    let val 
+    usersRef().child(uid)
+        .once('value', snap => {
+            val = { 
+                isAdmin: snap.val().admin,
+                companyId: snap.val().companyId
+            }
+        })
+        .then(() => {
+            const index = `${val.isAdmin ? `/company/${val.companyId}/admin` : `/company/${val.companyId}/user`}`
+            cb(index)
+        })
+    } 

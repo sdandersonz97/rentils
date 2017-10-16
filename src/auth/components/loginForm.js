@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import AuthForm from './authForm'
+import { authUser } from '../actions'
+import { connect } from 'react-redux'
 class LoginForm extends Component {
     state = {
         email: '',
@@ -7,7 +9,9 @@ class LoginForm extends Component {
     }
     onInputChange = (input, value) => this.setState({ [input]: value })
     onSubmit = e => {
+        const { history, authUser } = this.props
         e.preventDefault()
+        authUser(this.state, route => history.push(route))
         this.setState({ email: '', password: '' })
     }
     render(){
@@ -22,4 +26,4 @@ class LoginForm extends Component {
         )
     }
 }
-export default LoginForm
+export default connect(null, { authUser })(LoginForm)
