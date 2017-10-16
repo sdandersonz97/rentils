@@ -1,0 +1,63 @@
+.button {
+    display: flex;
+    height: 40px;
+    width: 130px;
+    margin: 10px;
+    border-color: #7c77fd;
+    justify-content: center;
+    align-items: center;
+}
+.banner {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-image:  url(../img/banner.jpg);
+    background-repeat: norepeat;
+    background-size: cover;
+    background-position: center center;
+    height: 50vh;
+    max-width: 100%;
+}
+.title {
+    display: block;
+    line-height: 1.23;
+    letter-spacing: 0.1rem;
+    font-size: 4.3rem;
+    text-align: center;
+    color: white;
+}
+.tableCell {
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.featureContainer {
+    margin-top: 50px;
+    display:flex; 
+    flex-direction:column;
+    justify-content:center; 
+    align-items:center;
+    background-color: #fff;
+    border: rgb(160, 154, 154) 1px solid;
+    margin: 5px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #888888;
+    padding: 10px;
+}
+.imageFeature {
+    width:100px;
+    height:100px;
+    align-self:center;
+}
+.featureListContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 50vh;
+    
+}
+
