@@ -16,9 +16,10 @@ export const initFirebase = () => firebase.initializeApp(CONFIG)
 const rootRef = () => firebase.database().ref()
 export const rentalsRef = companyId => rootRef().child(`${companyId}/rentals`)
 export const usersRef = () => rootRef().child('/users')
+export const companyRef = () => rootRef().child('/companies')
 
 //auth helpers
 export const getCurrentUser = () => firebase.auth().currentUser()
 export const signInWithEmailAndPassword = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
 export const signOut = () => firebase.auth().signOut()
-export const signUp = (email, password) => firebase.auth().createUserWithEmailAndPassword(email,password)
+export const createUserWithEmailAndPassword = (email, password) => firebase.auth().createUserWithEmailAndPassword(email,password)
