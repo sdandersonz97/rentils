@@ -15,7 +15,7 @@ export const initFirebase = () => firebase.initializeApp(CONFIG)
 //database ref
 const rootRef = () => firebase.database().ref()
 export const rentalsRef = companyId => rootRef().child(`${companyId}/rentals`)
-
+export const usersRef = () => rootRef().child('/users')
 
 //auth helpers
 export const getCurrentUser = () => firebase.auth().currentUser()
