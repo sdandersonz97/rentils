@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-export const CONFIG = {
+const CONFIG = {
     apiKey: "AIzaSyB5KKkoSog6nyGhYyVKXVY9l8JM0kgpofA",
     authDomain: "rent-12ae6.firebaseapp.com",
     databaseURL: "https://rent-12ae6.firebaseio.com",
@@ -8,6 +8,9 @@ export const CONFIG = {
     storageBucket: "rent-12ae6.appspot.com",
     messagingSenderId: "309451122261"
   };
+
+export const initFirebase = () => firebase.initializeApp(CONFIG)
+
 
 //database ref
 const rootRef = () => firebase.database().ref()
