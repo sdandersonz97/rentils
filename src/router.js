@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 import App from './public/App'
 import LoginForm from './auth/components/loginForm'
 import SignupForm from './auth/components/signupForm'
-import { initFirebase, getCurrentUser } from './utils/firebaseHelpers'
-import { AUTH_USER } from './auth/actions/types'
-import { connect } from 'react-redux'
+
 
 const Router = () =>{
     return (
