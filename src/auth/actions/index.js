@@ -32,32 +32,27 @@ const isAdmin = (cb, uid) => {
 } 
 
 
-export function signupCompany({ email, password }, cb){
-    return dispatch => {
-        createUserWithEmailAndPassword(email,password)
-            .then(({ uid }) => registerCompany(uid))
-            .then(() => alert(`Sign Up succesfully`))
-            .then(() => cb)
-            .catch(error => {
-                dispatch({
-                    type: ERROR,
-                    payload: error
-                })
+export const signupCompany = ({ email, password }, cb) => dispatch => 
+    createUserWithEmailAndPassword(email,password)
+        .then(({ uid }) => registerCompany(uid))
+        .then(() => alert(`Sign Up succesfully`))
+        .catch(error => {
+            dispatch({
+                type: ERROR,
+                payload: error
             })
-    }
-}
-function registerCompany(uid){
+        })
+
+const registerCompany = uid => {
     const companyId = companyRef().push().key
-    return dispatch => {
-        companyRef().child(companyId).set({
-            accounting:{
-                expenses:0,
-                profits:0,
-                incomes:0
-            }
-        })
-        usersRef().child(uid).set({
-                admin: true              
-        })
-    } 
-}
+    companyRef().child(companyId).set({
+        accounting:{
+            expenses:0,
+            profits:0,
+            incomes:0
+        }
+    })
+    usersRef().child(uid).set({
+            admin: true              
+    })}
+ 

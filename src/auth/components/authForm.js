@@ -35,13 +35,13 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 <input
                                     className='form-control'
                                     type='text'
+                                    value={confirmPassword}
                                     onChange={({ target }) => onInputChange('confirmPassword', target.value)}
                                 />
                                 <div className='invalid-feedback'>
                                 </div>
                             </div>
                         }
-                        
                         <button type='submit' className='btn btn primary'> submit </button>
                     </form>
             </CardBody>
