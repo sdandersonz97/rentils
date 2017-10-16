@@ -36,14 +36,14 @@
 }
 .featureContainer {
     margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
     display:flex; 
     flex-direction:column;
     justify-content:center; 
     align-items:center;
     background-color: #fff;
     border: rgb(160, 154, 154) 1px solid;
-    margin: 5px;
-    width: 30%;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #888888;
     padding: 10px;
@@ -55,8 +55,7 @@
 }
 .featureListContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     min-height: 50vh;
     
 }
