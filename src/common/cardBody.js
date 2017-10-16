@@ -1,9 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const CardBody = (props) => {
+export const CardBody = ({ children }) => {
     return(
-        <div className="card-content">
-            {props.children}
-        </div>
+        <section className='card-content row' style={{margin:20}}>
+            {children}
+        </section>
     )
 }
+
+CardBody.propType = {
+    children: PropTypes.element.isRequired
+}
+
