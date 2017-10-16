@@ -1,14 +1,23 @@
-import React, { Component } from 'react'
+import React,{ Component } from 'react'
+import PropTypes from 'prop-types'
 
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        admin app
-      </div>
-    );
-  }
+class AdminApp extends Component {
+    state = {
+        companyName: ''
+    }
+    componentDidMount(){
+    }
+    render(){
+        return(
+            <div className="wrapper"> 
+                <div className="main-panel">
+                    {this.props.children}
+                </div>
+            </div>
+        )
+    }
 }
-
-export default App
+AdminApp.propTypes = {
+  children: PropTypes.element.isRequired
+}
+export default AdminApp
