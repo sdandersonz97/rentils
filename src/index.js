@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Router from './router'
+import App from './app'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore, compose } from 'redux'
@@ -15,12 +15,10 @@ const store = createStore(rootReducer,
         applyMiddleware(thunk)
     )
 )
-
-
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Router />
+            <App />
         </BrowserRouter>
     </Provider>, 
     document.getElementById('root'))

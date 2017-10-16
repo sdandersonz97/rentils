@@ -19,7 +19,7 @@ export const usersRef = () => rootRef().child('/users')
 export const companyRef = () => rootRef().child('/companies')
 
 //auth helpers
-export const getCurrentUser = () => firebase.auth().currentUser()
+export const getCurrentUser = () => firebase.auth().currentUser
 export const signInWithEmailAndPassword = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
 export const signOut = () => firebase.auth().signOut()
 export const createUserWithEmailAndPassword = (email, password) => firebase.auth().createUserWithEmailAndPassword(email,password)
