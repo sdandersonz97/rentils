@@ -9,9 +9,9 @@ class AdminApp extends Component {
     }
     render(){
         return(
-            <div className="wrapper"> 
+            <div className='wrapper'> 
               <AsideBarAdmin/>
-                <div className="main-panel">
+                <div className='main-panel'>
                     {this.props.children}
                 </div>
             </div>

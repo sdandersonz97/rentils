@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 export const AsideBarItem = ({ route, icon, title, location }) => {
     return(
         <li className={location === route ? 'active' : ''}>
-            <Link className="nav-link" to={route}>
-                    <i className="material-icons">{icon}</i>
-                    <p className="nav-item">
+            <Link className='nav-link' to={route}>
+                    <i className='material-icons'>{icon}</i>
+                    <p className='nav-item'>
                         {title}
                     </p>
             </Link>
