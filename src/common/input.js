@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const Input = ({ label, onChange, value, type, error }) => (
+export const Input = ({ label, onChange, value, type, error, ...rest }) => (
     <div className='form-group'>
         <label>{label}</label>
         <input
@@ -13,4 +14,11 @@ export const Input = ({ label, onChange, value, type, error }) => (
         </div>
     </div>
 )
+
+Input.propTypes = {
+    label: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number]),
+    error: PropTypes.string
+}
 

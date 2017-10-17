@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
-
+import PropTypes from 'prop-types'
 const RentalForm = ({ title, category, color, onInputChange, values, onSubmit }) => {
     return (
             <Card>
@@ -54,5 +54,12 @@ const RentalForm = ({ title, category, color, onInputChange, values, onSubmit })
             </Card>
     )
 }
-
+RentalForm.propTypes = {
+    title: PropTypes.string, 
+    category: PropTypes.string, 
+    color: PropTypes.string, 
+    onInputChange: PropTypes.func.isRequired, 
+    values: PropTypes.object, 
+    onSubmit: PropTypes.func
+}
 export default RentalForm
