@@ -1,3 +1,5 @@
 export * from './cardBody'
 export * from './cardHeader'
 export * from './card'
+export * from './asideBar'
+export * from './asideBarItem'

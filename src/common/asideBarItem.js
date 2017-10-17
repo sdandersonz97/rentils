@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-const AsideBarItem = ({ route, icon, title, location }) => {
+
+export const AsideBarItem = ({ route, icon, title, location }) => {
     return(
         <li className={location === route ? 'active' : ''}>
             <Link className="nav-link" to={route}>
@@ -19,5 +20,3 @@ AsideBarItem.propTypes = {
     location: PropTypes.string.isRequired,
     icon: PropTypes.string
 }
-
-export default AsideBarItem

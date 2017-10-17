@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import PropTypes from 'prop-types'
-import AsideBar from './components/asideBar'
+import AsideBarAdmin from './components/asideBar'
 class AdminApp extends Component {
     state = {
         companyName: ''
@@ -10,7 +10,7 @@ class AdminApp extends Component {
     render(){
         return(
             <div className="wrapper"> 
-              <AsideBar/>
+              <AsideBarAdmin/>
                 <div className="main-panel">
                     {this.props.children}
                 </div>
