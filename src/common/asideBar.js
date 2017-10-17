@@ -19,6 +19,6 @@ export const AsideBar = ({ headerLink, header, children, color }) => (
 AsideBar.propTypes = {
     headerLink: PropTypes.string,
     header: PropTypes.string,
-    children: PropTypes.element.isRequired
+    children: PropTypes.array.isRequired
 }
 

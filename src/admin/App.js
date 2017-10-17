@@ -19,6 +19,6 @@ class AdminApp extends Component {
     }
 }
 AdminApp.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.array.isRequired
 }
 export default AdminApp
