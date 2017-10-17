@@ -6,7 +6,7 @@ export const CardStatsFooter = ({ urlFooter, children, link }) => (
     <div className='card-footer'>
         <div className='stats'>
             {link 
-                ? <Link to={props.urlFooter}> {children} </Link>
+                ? <Link to={urlFooter}> {children} </Link>
                 : <p>{children}</p>}
         </div>
     </div> 
@@ -15,5 +15,5 @@ export const CardStatsFooter = ({ urlFooter, children, link }) => (
 CardStatsFooter.propTypes = {
     urlFooter: PropTypes.string,
     link: PropTypes.bool,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.string,
 }

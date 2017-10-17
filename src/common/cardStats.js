@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export const CardStats = ({ children }) => (
@@ -9,5 +8,5 @@ export const CardStats = ({ children }) => (
 )
 
 CardStats.propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.array.isRequired
 }

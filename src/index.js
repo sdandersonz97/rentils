@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { AUTH_USER } from './auth/actions/types'
 import './styles/styles.css'
 import './styles/material.css'
-import { initFirebase, getCurrentUser } from './utils/firebaseHelpers'
+import { initFirebase } from './utils/firebaseHelpers'
 const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer,
     composeEnhancers(

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const CardStatsBody = ({ category, title }) => (
     <div className='card-content'>
         <p className='category'>{category}</p>
-        <h3 className='title'>{title}</h3>
+        <h3 className='title' style={{color:'black'}}>{title}</h3>
     </div>
 )
 
