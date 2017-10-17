@@ -14,6 +14,12 @@ const AsideBarAdmin = (props) => {
                     title='Dashboard' 
                     icon='dashboard'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route={getRoute('rentals/new')} 
+                    title='New Rental' 
+                    icon='add_box'
+            />
         </AsideBar>
     )
 }
