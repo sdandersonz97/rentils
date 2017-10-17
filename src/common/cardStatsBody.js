@@ -10,6 +10,6 @@ export const CardStatsBody = ({ category, title }) => (
 
 
 CardStatsBody.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired
 }
