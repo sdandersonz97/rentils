@@ -27,7 +27,7 @@ const isAdmin = (cb, uid) => {
             }
         })
         .then(() => {
-            const index = `${val.isAdmin ? `/company/${val.companyId}/admin` : `/company/${val.companyId}/user`}`
+            const index = `${val.isAdmin ? `/company/${val.companyId}/admin/dashboard` : `/company/${val.companyId}/user`}`
             cb(index)
         })
 } 
