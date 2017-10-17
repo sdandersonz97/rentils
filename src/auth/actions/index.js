@@ -48,7 +48,6 @@ const registerCompany = uid => {
     companyRef().child(companyId).set({
         accounting:{
             expenses:0,
-            profits:0,
             incomes:0
         }
     })
