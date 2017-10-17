@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import RentalForm from './rentalForm'
 import { withRouter } from 'react-router-dom'
+import { addCompanyRental } from '../actions/rentals'
 class RentalCreate extends Component {
     state = { 
         cod:'',
@@ -12,7 +13,9 @@ class RentalCreate extends Component {
         description: ''
     }
     onSubmit = e => {
+        const { companyId } = this.props.match.params
         e.preventDefault()
+        this.props.addCompanyRental(companyId, {...this.state})
         this.resetState()
     }
     resetState = () => {
@@ -40,4 +43,4 @@ class RentalCreate extends Component {
     }
 }
 
-export default withRouter(RentalCreate)
+export default withRouter(connect(null, { addCompanyRental })(RentalCreate))
