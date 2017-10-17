@@ -7,6 +7,7 @@ export const authUser = ({ email,password }, cb) => dispatch =>
             dispatch({
                 type: AUTH_USER
             })
+            localStorage.setItem('token', user.uid)
             isAdmin(cb, user.uid)
         })
         .catch(error => {
@@ -52,6 +53,7 @@ const registerCompany = uid => {
         }
     })
     usersRef().child(uid).set({
+            companyId,
             admin: true              
     })}
  
