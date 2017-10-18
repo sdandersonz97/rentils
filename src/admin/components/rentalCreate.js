@@ -30,6 +30,7 @@ class RentalCreate extends Component {
     }
     onInputChange = (input, value) => this.setState({ [input]: value })
     render(){
+        const { companyId } = this.props.match.params
         return(
             <RentalForm
                 title='New Rental'
@@ -38,6 +39,7 @@ class RentalCreate extends Component {
                 values={this.state}
                 onInputChange={this.onInputChange}
                 onSubmit={this.onSubmit}
+                cancelLink={`/company/${companyId}/admin/dashboard`}
             />
         )
     }

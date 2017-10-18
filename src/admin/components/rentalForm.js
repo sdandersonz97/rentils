@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
 import PropTypes from 'prop-types'
-const RentalForm = ({ title, category, color, onInputChange, values, onSubmit }) => {
+const RentalForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink }) => {
     return (
             <Card size='9'>
                 <CardHeader 
@@ -49,6 +49,7 @@ const RentalForm = ({ title, category, color, onInputChange, values, onSubmit })
                             value={values.description}
                         />
                         <button type='submit' className='btn btn primary'> submit </button>
+                        <Link className='btn btn danger' to={cancelLink}> cancel </Link>
                     </form>
                 </CardBody>
             </Card>

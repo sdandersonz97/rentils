@@ -8,5 +8,5 @@ export const CardStats = ({ children }) => (
 )
 
 CardStats.propTypes = {
-    children: PropTypes.array.isRequired
+    children: PropTypes.oneOfType([ PropTypes.element, PropTypes.array ]).isRequired
 }

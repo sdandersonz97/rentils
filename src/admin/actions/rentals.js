@@ -1,4 +1,4 @@
-import { ADD_COMPANY_RENTAL, FETCH_COMPANY_RENTALS } from './types'
+import { FETCH_COMPANY_RENTALS } from './types'
 import { rentalsRef } from '../../utils/firebaseHelpers'
 
 export const addCompanyRental = (companyId, values) => () => 

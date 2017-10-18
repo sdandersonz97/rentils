@@ -9,6 +9,6 @@ export const CardBody = ({ children }) => (
 )
 
 CardBody.propType = {
-    children: PropTypes.element.isRequired
+    children:PropTypes.oneOfType([ PropTypes.element, PropTypes.array ]).isRequired
 }
 
