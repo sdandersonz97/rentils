@@ -4,18 +4,22 @@ import RentalForm from './rentalForm'
 import RentForm from './rentForm'
 import { withRouter } from 'react-router-dom'
 import { addCompanyRental } from '../actions/rentals'
+import { addCompanyRent } from '../actions/rents'
 import { Rental, Rent } from '../constructors'
 class RentalCreate extends Component {
     state = { 
        newRental: new Rental('', 0, '', 0, 0, ''),
-       newRent: new Rent('',0,'',''),
+       newRent: new Rent(0,'',''),
        isRented: false,
        screen: 'RentalForm'
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
+        const { addCompanyRent, addCompanyRental } = this.props
+        const { newRent, newRental, isRented } = this.state
         e.preventDefault()
-        this.props.addCompanyRental(companyId, {...this.state.newRental})
+        const rentalId = addCompanyRental(companyId, {...newRental})
+        isRented && addCompanyRent(companyId, {...newRent, rentalId}) 
         this.resetState()
     }
     resetState = () => {
@@ -26,9 +30,13 @@ class RentalCreate extends Component {
             screen: 'RentalSaved'
         })
     }
-    onInputChange = (form, input, value) => this.setState({ 
+    onRentalInputChange = (input, value) => this.setState({ 
         ...this.state,
-        [form]: { ...this.state.form, [input]:value }
+        newRental: { ...this.state.newRental, [input]:value }
+    })
+    onRentInputChange = (input, value) => this.setState({ 
+        ...this.state,
+        newRent: { ...this.state.newRent, [input]:value }
     })
     onCheckboxChange = () => {
         this.setState({ isRented: !this.state.isRented })
@@ -46,7 +54,7 @@ class RentalCreate extends Component {
                 category='Is time to create a new Rental'
                 color='blue'
                 values={newRental}
-                onInputChange={this.onInputChange.bind(this, 'newRental')}
+                onInputChange={this.onRentalInputChange}
                 isRented={isRented}
                 onCheckboxChange={this.onCheckboxChange}
                 onSubmit={this.onSubmit}
@@ -58,7 +66,7 @@ class RentalCreate extends Component {
                     category=''
                     color='blue'
                     values={newRent}
-                    onInputChange={this.onInputChange.bind(this, 'newRent')}            
+                    onInputChange={this.onRentInputChange}            
                     onSubmit={this.onSubmit}
                     onScreenChange={this.onScreenChange}
                     cancelLink={`/company/${companyId}/admin/dashboard`}/>
@@ -66,4 +74,4 @@ class RentalCreate extends Component {
     }
 }
 
-export default withRouter(connect(null, { addCompanyRental })(RentalCreate))
+export default withRouter(connect(null, { addCompanyRental, addCompanyRent })(RentalCreate))
