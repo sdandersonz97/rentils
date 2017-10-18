@@ -16,7 +16,10 @@ export const Card = ({ children, screen, size }) => (
 
 Card.propTypes = {
     screen: PropTypes.string,
-    size: PropTypes.number,
+    size: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
     children: PropTypes.array.isRequired
 }
 

@@ -4,7 +4,7 @@ import { Card, CardHeader, CardBody, Input } from '../../common'
 import PropTypes from 'prop-types'
 const RentalForm = ({ title, category, color, onInputChange, values, onSubmit }) => {
     return (
-            <Card>
+            <Card size='9'>
                 <CardHeader 
                     title={title}
                     category={category}
