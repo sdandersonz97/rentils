@@ -3,32 +3,24 @@ import { connect } from 'react-redux'
 import RentalForm from './rentalForm'
 import { withRouter } from 'react-router-dom'
 import { addCompanyRental } from '../actions/rentals'
+import { Rental } from '../constructors'
 class RentalCreate extends Component {
     state = { 
-        cod:'',
-        cost: 0,
-        address:'',
-        max: 0,
-        min: 0,
-        description: ''
+       newRental: new Rental('', 0, '', 0, 0, '')
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
         e.preventDefault()
-        this.props.addCompanyRental(companyId, {...this.state})
+        this.props.addCompanyRental(companyId, {...this.state.newRental})
         this.resetState()
     }
     resetState = () => {
-        this.setState({
-            cod:'',
-            cost: 0,
-            address:'',
-            max: 0,
-            min: 0,
-            description: ''
-        })
+        this.setState({ newRental: new Rental('', 0, '', 0, 0, '')})
     }
-    onInputChange = (input, value) => this.setState({ [input]: value })
+    onInputChange = (input, value) => this.setState({ 
+        ...this.state,
+        newRental: { ...this.state.newRental, [input]:value }
+    })
     render(){
         const { companyId } = this.props.match.params
         return(
@@ -36,7 +28,7 @@ class RentalCreate extends Component {
                 title='New Rental'
                 category='Is time to create a new Rental'
                 color='blue'
-                values={this.state}
+                values={this.state.newRental}
                 onInputChange={this.onInputChange}
                 onSubmit={this.onSubmit}
                 cancelLink={`/company/${companyId}/admin/dashboard`}
