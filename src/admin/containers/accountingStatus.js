@@ -13,21 +13,21 @@ class AccountingStatus extends Component {
         const { incomes, expenses } = this.props
         return(
             <div>
-                <div className='col-lg-3 col-md-6 col-sm-6'>
+                <div className='col-lg-4 col-md-4 col-sm-4'>
                     <CardStats>
                         <CardStatsHeader icon='attach_money' color='blue' />
                         <CardStatsBody title={incomes} category='Incomes' />
                         <CardStatsFooter link urlFooter={`/company/${companyId}/admin/incomes`}> See Details </CardStatsFooter>
                     </CardStats>
                 </div>
-                <div className='col-lg-3 col-md-6 col-sm-6'>
+                <div className='col-lg-4 col-md-4 col-sm-4'>
                     <CardStats>
                         <CardStatsHeader icon='money_off' color='red' />
                         <CardStatsBody title={expenses} category='Expenses' />
                         <CardStatsFooter link urlFooter={`/company/${companyId}/admin/expenses`}> See Details </CardStatsFooter>
                     </CardStats>
                 </div>
-                <div className='col-lg-3 col-md-6 col-sm-6'>
+                <div className='col-lg-4 col-md-4 col-sm-4'>
                     <CardStats>
                         <CardStatsHeader icon='monetization_on' color='green' />
                         <CardStatsBody title={incomes-expenses} category='Budge' />
