@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, CardBody, CardHeader, Table, TableBody, TableHeader, DropdownButton } from '../../common'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { fetchCompanyRentals } from '../actions/rentals'
 
 class RentalList extends Component { 
@@ -25,10 +25,11 @@ class RentalList extends Component {
     ]
     renderRows = rentalId => {
         const { rentalList } = this.props
+        const { companyId } = this.props.match.params
         return(
             <tr key={rentalId}>
                 <td>
-                    {rentalList[rentalId].cod}
+                    <Link to={`/company/${companyId}/rentals/${rentalId}`}>{rentalList[rentalId].cod}</Link>
                 </td>
                 <td>
                     {rentalList[rentalId].address}
