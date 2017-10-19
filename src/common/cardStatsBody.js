@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const CardStatsBody = ({ category, title, children, extend }) => (
     <div className='card-content'>
         <p className='category'>{category}</p>
-        {extend ? children : <h3 className='title' style={{color:'black'}}>{title}</h3> }
+        {extend ? children : <h3 className='title' style={{color:'#767b7d'}}>{title}</h3> }
     </div>
 )
 

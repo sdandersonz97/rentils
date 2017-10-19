@@ -11,7 +11,7 @@ class RentalInfo extends Component {
     render(){
         const { rental } = this.props 
         return(
-            <CardStats>
+            <CardStats style={{minHeight:220}}>
                 <CardStatsHeader icon='bookmark' iconColor='white' color='purple'/>
                 <CardStatsBody category='RENTAL INFO' extend>
                     <p style={{marginTop:60, textAlign:'left'}}><strong>Cod:</strong> {rental.cod} <br/>

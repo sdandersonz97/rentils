@@ -14,7 +14,7 @@ class RentalRentInfo extends Component {
         const { rentInfo } = this.props 
         
         return(
-            <CardStats>
+            <CardStats style={{minHeight:220}}>
                 <CardStatsHeader icon='assignment' iconColor='white' color={'blue'}/>
                 <CardStatsBody category='RENT INFO' extend>
                     
