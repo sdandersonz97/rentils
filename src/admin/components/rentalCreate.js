@@ -63,13 +63,15 @@ class RentalCreate extends Component {
             :  screen === 'RentForm' 
                 ? <RentForm
                     title='Rent'
-                    category=''
+                    category={`The range to rent this Rental is $${newRental.min} - $${newRental.max}`}
                     color='blue'
                     values={newRent}
                     onInputChange={this.onRentInputChange}            
                     onSubmit={this.onSubmit}
                     onScreenChange={this.onScreenChange}
+                    range={[newRental.min, newRental.max]}
                     cancelLink={`/company/${companyId}/admin/dashboard`}/>
+                    
                 : <div>Rental Saved !</div>
     }
 }

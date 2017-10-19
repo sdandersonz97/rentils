@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
 import PropTypes from 'prop-types'
 
-const RentForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink }) => {
+const RentForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink, range }) => {
     const { price, tenant, paymentDate } = values
     return (
         <Card size='9'>
@@ -23,12 +23,15 @@ const RentForm = ({ title, category, color, onInputChange, values, onSubmit, can
                     <Input
                         label='Price'
                         type='number'
+                        min={range[0]}
+                        max={range[1]}
                         onChange={onInputChange.bind(this,'price')}
                         value={price}
                     />
                     <Input
                         label='Payment Day'
                         type='date'
+                        
                         onChange={onInputChange.bind(this,'paymentDate')}
                         value={paymentDate}
                     />

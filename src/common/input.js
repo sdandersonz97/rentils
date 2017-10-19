@@ -9,6 +9,7 @@ export const Input = ({ label, onChange, value, type, error, ...rest }) => (
             onChange={({ target }) => onChange(target.value)}
             type={type}
             value={value}
+            {...rest}
         />
         <div className='invalid-feedback'>
         </div>
