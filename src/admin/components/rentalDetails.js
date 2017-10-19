@@ -1,12 +1,12 @@
 import React from 'react'
-
+import RentalInfo from '../containers/rentalInfo'
 const RentalDetails = () => {
     return(
         <div className="content">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6">
-                        Test
+                        <RentalInfo/>
                     </div>
                     <div className="col-md-6">
 

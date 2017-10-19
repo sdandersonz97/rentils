@@ -29,7 +29,7 @@ class RentalList extends Component {
         return(
             <tr key={rentalId}>
                 <td>
-                    <Link to={`/company/${companyId}/admin/rentals/${rentalId}`}>{rentalList[rentalId].cod}</Link>
+                    <Link to={`/company/${companyId}/admin/rentals/rental/${rentalId}`}>{rentalList[rentalId].cod}</Link>
                 </td>
                 <td>
                     {rentalList[rentalId].address}
