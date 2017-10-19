@@ -1,5 +1,6 @@
 import React from 'react'
 import RentalInfo from '../containers/rentalInfo'
+import RentalRentInfo from '../containers/rentalRentInfo'
 const RentalDetails = () => {
     return(
         <div className="content">
@@ -9,7 +10,7 @@ const RentalDetails = () => {
                         <RentalInfo/>
                     </div>
                     <div className="col-md-6">
-
+                        <RentalRentInfo/>
                     </div>
                     <div className="col-md-6">
 
