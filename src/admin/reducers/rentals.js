@@ -1,12 +1,14 @@
 import _ from 'lodash'
-import { FETCH_COMPANY_RENTALS, FETCH_COMPANY_RENTAL } from '../actions/types'
+import { FETCH_COMPANY_RENTALS, FETCH_COMPANY_RENTAL, FETCH_RENT_INFO } from '../actions/types'
 
 
 const INITIAL_STATE = {
     rentalList: {},
     rentalsTotal: 0,
     rentalsAvailable: 0,
-    selectedRental: {}
+    selectedRental: {
+        rentInfo: {}
+    }
 }
 
 export default (state=INITIAL_STATE, action) => {
@@ -21,7 +23,18 @@ export default (state=INITIAL_STATE, action) => {
         case FETCH_COMPANY_RENTAL:
             return {
                 ...state,
-                selectedRental: action.rental
+                selectedRental: {
+                    ...state.selectedRental,
+                    ...action.rental
+                }
+            }
+        case FETCH_RENT_INFO:
+            return {
+                ...state,
+                selectedRental: { 
+                    ...state.selectedRental,
+                    rentInfo: action.rent
+                }
             }
         default:
             return state
