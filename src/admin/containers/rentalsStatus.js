@@ -6,7 +6,8 @@ import { CardStats, CardStatsBody, CardStatsFooter, CardStatsHeader } from '../.
 class RentalsStatus extends Component {
     componentDidMount(){
         const { companyId } = this.props.match.params 
-        this.props.fetchCompanyRentals(companyId)
+        const { rentalList, fetchCompanyRentals } = this.props
+        Object.keys(rentalList).length === 0 && fetchCompanyRentals(companyId)
     }
     render(){
         const { companyId } = this.props.match.params 
@@ -32,8 +33,9 @@ class RentalsStatus extends Component {
 }
 
 const mapStateToProps = ({ rentals }) => {
-    const { rentalsAvailable, rentalsTotal } = rentals
+    const { rentalsAvailable, rentalsTotal, rentalList } = rentals
     return {
+        rentalList,
         rentalsTotal,
         rentalsAvailable 
     }
