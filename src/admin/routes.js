@@ -4,6 +4,7 @@ import Dashboard from './components/dashboard'
 import RentalCreate from './components/rentalCreate'
 import RentalList from './containers/rentalList'
 import RentalDetails from './components/rentalDetails'
+import EmployeeForm from './components/employeeForm'
 import PrivateRoute from '../auth/components/privateRoute'
 const Routes = () => {
     return (
@@ -12,6 +13,8 @@ const Routes = () => {
             <PrivateRoute exact path='/company/:companyId/admin/rentals/new' component={RentalCreate} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals/rental/:rentalId' component={RentalDetails} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals' component={RentalList} />
+            <PrivateRoute exact path='/company/:companyId/admin/employees/new' component={EmployeeForm} />
+
         </AdminApp>
     )
 }
