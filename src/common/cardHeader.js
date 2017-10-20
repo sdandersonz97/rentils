@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const CardHeader = ({title, category, color}) => (
-    <header className='card-header' data-background-color={color}>
+export const CardHeader = ({title, category, color, style}) => (
+    <header className='card-header' style={style} data-background-color={color}>
         <h4 className='title'>{title}</h4>
         <p className='category'>{category}</p>
     </header>
@@ -11,5 +11,6 @@ export const CardHeader = ({title, category, color}) => (
 
 CardHeader.propTypes = {
     title: PropTypes.string,
-    category: PropTypes.string
+    category: PropTypes.string,
+    style: PropTypes.object
 }
