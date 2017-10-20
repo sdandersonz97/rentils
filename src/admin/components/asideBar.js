@@ -26,6 +26,12 @@ const AsideBarAdmin = (props) => {
                     title='Register Employee' 
                     icon='person_add'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route={getRoute('employees')} 
+                    title='Employees' 
+                    icon='group'
+            />
         </AsideBar>
     )
 }
