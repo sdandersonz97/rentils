@@ -60,9 +60,9 @@ const registerCompany = uid => {
     })}
 
 
-export const signupEmployee = ({ email, password }, cb) => dispatch => 
+export const signupEmployee = ({ companyId, email, password, fullname, cod }, cb) => dispatch => 
 createUserWithEmailAndPassword(email,password)
-    .then(({ uid }) => registerEmployee(uid))
+    .then(({ uid }) => registerEmployee(companyId, uid, fullname, cod))
     .then(() => alert(`Sign Up succesfully`))
     .catch(error => {
         dispatch({
@@ -71,8 +71,15 @@ createUserWithEmailAndPassword(email,password)
         })
     })
 
-const registerEmployee = uid => {
-    const companyId = companyRef().push().key
+const registerEmployee = (companyId, uid, fullname, cod) => {
+    companyRef().child(companyId).child(`employees/${uid}`).set({
+        cod,
+        expenses: 0,
+        incomes: 0,
+        rentals: 0,
+        rents: 0,
+        fullname
+    })
     usersRef().child(uid).set({
             companyId,
             admin: false              

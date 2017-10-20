@@ -2,12 +2,36 @@ import React from 'react'
 import { Card, CardBody } from '../../common'
 import PropTypes from 'prop-types'
 
-const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup }) => {
+const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup, employee, fullname, cod }) => {
     return(
         <Card size={6}>
             <CardBody>
                     <form onSubmit={onSubmit}>
                         <div className='form-group'>
+                            {employee && 
+                                [<div key='fullname' className='form-group'>
+                                    <label>Full Name:  </label>
+                                    <input
+                                        className='form-control'
+                                        type='text'
+                                        value={fullname}
+                                        onChange={({ target }) => onInputChange('fullname', target.value)}
+                                    />
+                                    <div className='invalid-feedback'>
+                                    </div>
+                                </div>,
+                                <div key='cod' className='form-group'>
+                                    <label>cod: </label>
+                                    <input
+                                        className='form-control'
+                                        type='text'
+                                        value={cod}
+                                        onChange={({ target }) => onInputChange('cod', target.value)}
+                                    />
+                                    <div className='invalid-feedback'>
+                                    </div>
+                                </div>]
+                            }
                             <label>Email: </label>
                             <input
                                 className='form-control'
@@ -54,6 +78,9 @@ AuthForm.propTypes = {
     onInputChange: PropTypes.func.isRequired, 
     onSubmit: PropTypes.func.isRequired,
     confirmPassword: PropTypes.string, 
-    signup: PropTypes.bool
+    signup: PropTypes.bool,
+    employee: PropTypes.bool,
+    fullname: PropTypes.string, 
+    cod: PropTypes.string,
 }
 export default AuthForm
