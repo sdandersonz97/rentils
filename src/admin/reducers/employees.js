@@ -9,8 +9,9 @@ const INITIAL_STATE = {
         fullname:'',
         incomes:0,
         expenses:0,
-        rent:0,
-        rentals: 0
+        rents:0,
+        rentals: 0,
+        rentalsRented:0,
     }
 }
 
@@ -25,7 +26,7 @@ export default (state=INITIAL_STATE, action) => {
         case FETCH_COMPANY_EMPLOYEE:
             return {
                 ...state,
-                selectedEmployee: action.employee
+                selectedEmployee: {...action.employee}
             }
         default:
             return state
