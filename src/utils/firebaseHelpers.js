@@ -19,6 +19,8 @@ export const companyRef = () => rootRef().child('/companies')
 export const rentalsRef = companyId => companyRef().child(`${companyId}/rentals`)
 export const accountingRef = companyId => companyRef().child(`${companyId}/accounting`)
 export const rentsRef = companyId => companyRef().child(`${companyId}/rents`)
+export const employeesRef = companyId => companyRef().child(`${companyId}/employees`)
+
 //auth helpers
 export const getCurrentUser = () => firebase.auth().currentUser
 export const signInWithEmailAndPassword = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
