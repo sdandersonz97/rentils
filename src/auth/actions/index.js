@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, usersRef, createUserWithEmailAndPassword, companyRef } from '../../utils/firebaseHelpers'
+import { signInWithEmailAndPassword, usersRef, createUserWithEmailAndPassword, signOut, companyRef } from '../../utils/firebaseHelpers'
 import { AUTH_USER, UNAUTH_USER, ERROR } from './types'
 
 export const authUser = ({ email,password }, cb) => dispatch => 
@@ -84,4 +84,14 @@ const registerEmployee = (companyId, uid, fullname, cod) => {
             companyId,
             admin: false              
     })}
- 
+
+
+export function unauthUser(){
+    return dispatch => {
+        signOut()
+        localStorage.removeItem('token')
+        dispatch({
+            type: UNAUTH_USER
+        })
+    }
+}

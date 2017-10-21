@@ -44,6 +44,12 @@ const AsideBarAdmin = (props) => {
                     title='Assign Rents' 
                     icon='assignment'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route={'/signout'} 
+                    title='Logout' 
+                    icon='exit_to_app'
+            />
         </AsideBar>
     )
 }
