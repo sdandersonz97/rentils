@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
 import PropTypes from 'prop-types'
 
-const RentForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink, range }) => {
+const RentForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink, range, onScreenChange }) => {
     const { price, tenant, paymentDate } = values
     return (
         <Card size='9'>
@@ -13,7 +12,7 @@ const RentForm = ({ title, category, color, onInputChange, values, onSubmit, can
                 color={color}
             />
             <CardBody>
-                <form onSubmit={onSubmit}>
+                <form>
                     <Input
                         label='tenant'
                         type='text'
@@ -35,8 +34,8 @@ const RentForm = ({ title, category, color, onInputChange, values, onSubmit, can
                         onChange={onInputChange.bind(this,'paymentDate')}
                         value={paymentDate}
                     />
-                    <button type='submit' className='btn btn primary'> submit </button>
-                    <Link className='btn btn danger' to={cancelLink}> cancel </Link>
+                    <button onClick={()=>onScreenChange('EmployeeList')} className='btn btn primary'> Next </button>
+                    <button onClick={()=>onScreenChange('RentalForm')} className='btn btn primary'> Back </button>
                 </form>
             </CardBody>
         </Card>

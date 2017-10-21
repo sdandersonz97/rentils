@@ -12,7 +12,7 @@ const EmployeeListMin = ({ render, onClickChangeScreen, onSubmitAssignment }) =>
                     { render() }
                 </TableBody>
             </Table>
-            <button className='btn btn-primary' onClick={() => onClickChangeScreen('rentals')}>Back</button>
+            <button className='btn btn-primary' onClick={() => onClickChangeScreen('RentForm')}>Back</button>
             <button className='btn btn-primary' onClick={onSubmitAssignment}>Assign</button>
         </CardBody>
         </Card>

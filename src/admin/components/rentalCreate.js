@@ -2,16 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import RentalForm from './rentalForm'
 import RentForm from './rentForm'
+import EmployeeListMin from './employeeListMin'
 import { withRouter } from 'react-router-dom'
 import { addCompanyRental } from '../actions/rentals'
 import { addCompanyRent } from '../actions/rents'
+import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 import { Rental, Rent } from '../constructors'
 class RentalCreate extends Component {
     state = { 
        newRental: new Rental('', 0, '', 0, 0, ''),
        newRent: new Rent(0,'',''),
        isRented: false,
+       selectedEmployee: '',
        screen: 'RentalForm'
+    }
+    componentDidMount(){
+        const { companyId } = this.props.match.params
+        this.props.fetchCompanyEmployees(companyId)
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
@@ -19,8 +26,15 @@ class RentalCreate extends Component {
         const { newRent, newRental, isRented } = this.state
         e.preventDefault()
         const rentalId = addCompanyRental(companyId, {...newRental})
-        isRented && addCompanyRent(companyId, {...newRent, rentalId}) 
+        isRented && this.onSaveRent(rentalId)
         this.resetState()
+    }
+    onSaveRent = rentalId => {
+        const { companyId } = this.props.match.params
+        const { addCompanyRent, addAssignment } = this.props
+        const { newRent, selectedEmployee } = this.state
+        addCompanyRent(companyId, {...newRent, rentalId})
+        addAssignment(companyId, selectedEmployee, [rentalId])
     }
     resetState = () => {
         this.setState({ 
@@ -29,6 +43,26 @@ class RentalCreate extends Component {
             isRented: false,
             screen: 'RentalSaved'
         })
+    }
+    renderEmployeeRows = employeeId => {
+        const { employeesList } = this.props
+        const { selectedEmployee } = this.state
+        return(
+            <tr key={employeeId}>
+                <td>
+                    <input type='radio' value={employeeId} onClick={this.onSelectEmployee} checked={selectedEmployee === employeeId}/>
+                </td>
+                <td>
+                    {employeesList[employeeId].cod}
+                </td>
+                <td>
+                    {employeesList[employeeId].fullname}
+                </td>
+                <td>
+                    {employeesList[employeeId].rentals}
+                </td>
+            </tr>
+        )
     }
     onRentalInputChange = (input, value) => this.setState({ 
         ...this.state,
@@ -44,9 +78,13 @@ class RentalCreate extends Component {
     onScreenChange = screen => {
         this.setState({ screen })
     }
+    onSelectEmployee = e => {
+        this.setState({ selectedEmployee: e.target.value })
+    }
     render(){
         const { companyId } = this.props.match.params
         const { newRent, newRental, isRented, screen } = this.state
+        const { employeesList } = this.props
         return  screen === 'RentalForm'
             ? <RentalForm
                 title='New Rental'
@@ -66,12 +104,22 @@ class RentalCreate extends Component {
                     color='blue'
                     values={newRent}
                     onInputChange={this.onRentInputChange}            
-                    onSubmit={this.onSubmit}
                     onScreenChange={this.onScreenChange}
                     range={[newRental.min, newRental.max]}
                     cancelLink={`/company/${companyId}/admin/dashboard`}/>
-                : <div>Rental Saved !</div>
+                : screen === 'EmployeeList' 
+                    ? <EmployeeListMin 
+                            onClickChangeScreen={this.onScreenChange} 
+                            onSubmitAssignment={this.onSubmit}
+                            render={() => 
+                                Object.keys(employeesList)
+                                    .map(this.renderEmployeeRows)}
+                    />
+                    : <div>rental Saved</div>}
+}
+const mapStateToProps = ({ employees }) => {
+    return {
+        employeesList: employees.employeesList
     }
 }
-
-export default withRouter(connect(null, { addCompanyRental, addCompanyRent })(RentalCreate))
+export default withRouter(connect(mapStateToProps, { addCompanyRental, addCompanyRent, fetchCompanyEmployees, addAssignment })(RentalCreate))

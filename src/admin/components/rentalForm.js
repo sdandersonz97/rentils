@@ -50,7 +50,7 @@ const RentalForm = ({ title, category, color, onInputChange, values, onSubmit, c
                             value={description}
                         />
                         <div>
-                            <input type='checkbox' onClick={()=>onCheckboxChange()} checked={isRented} id='isRented'/> 
+                            <input type='checkbox' onChange={()=>onCheckboxChange()} checked={isRented} id='isRented'/> 
                             <label htmlFor='isRented'>Is rented?</label>
                         </div>
                         {!isRented 
