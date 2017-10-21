@@ -12,6 +12,7 @@ const INITIAL_STATE = {
         rents:0,
         rentals: 0,
         rentalsRented:0,
+        rentalsAssigned:{}
     }
 }
 

@@ -5,6 +5,7 @@ import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 import RentalListMin from '../components/rentalListMin'
 import EmployeeListMin from '../components/employeeListMin'
 import { withRouter } from 'react-router-dom'
+import { TableHeader } from '../../common'
 class RentalAssignment extends Component {
     state={
         screen:'rentals',
@@ -78,6 +79,7 @@ class RentalAssignment extends Component {
         ? this.setState({ screen })
         : alert('ups! you need to select a least one rental')
     }
+    renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS']}/>
     render(){
         const { rentalList, employeesList } = this.props
         const { screen } = this.state
@@ -85,7 +87,8 @@ class RentalAssignment extends Component {
             <div>
                 {screen === 'rentals'
                 ? <RentalListMin 
-                   onClickChangeScreen={this.onChangeScreen} 
+                    onClickChangeScreen={this.onChangeScreen} 
+                    renderTableHeader={this.renderTableHeader}
                     render={() => 
                         Object.keys(rentalList)
                             .filter(rental => !rentalList[rental].assigned)

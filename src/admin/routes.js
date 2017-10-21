@@ -8,6 +8,7 @@ import EmployeeForm from './components/employeeForm'
 import EmployeesList from './containers/employeesList'
 import ProfileDetails from './components/profileDetails'
 import RentalAssignment from './containers/rentalAssignment'
+import ProfileRentals from './containers/profileRentals'
 import PrivateRoute from '../auth/components/privateRoute'
 const Routes = () => {
     return (
@@ -18,6 +19,7 @@ const Routes = () => {
             <PrivateRoute exact path='/company/:companyId/admin/rentals/rental/:rentalId' component={RentalDetails} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals' component={RentalList} />
             <PrivateRoute exact path='/company/:companyId/admin/employees/new' component={EmployeeForm} />
+            <PrivateRoute exact path='/company/:companyId/admin/employees/employee/:employeeId/rentals' component={ProfileRentals} />
             <PrivateRoute exact path='/company/:companyId/admin/employees/employee/:employeeId' component={ProfileDetails} />
             <PrivateRoute exact path='/company/:companyId/admin/employees' component={EmployeesList} />
         </AdminApp>

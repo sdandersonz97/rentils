@@ -1,13 +1,13 @@
 import React from 'react'
 import { Card, CardBody, CardHeader, Table, TableBody, TableHeader } from '../../common'
 
-const RentalListMin = ({ render, onClickChangeScreen }) => { 
+const RentalListMin = ({ render, renderTableHeader, onClickChangeScreen }) => { 
     return( 
         <Card>
         <CardHeader title='Rentals' category='All the rentals'/>                               
         <CardBody>
             <Table>
-                <TableHeader titles={['SELECT','COD','ADDRESS']}/>
+                {renderTableHeader()}
                 <TableBody>
                     { render() }
                 </TableBody>
