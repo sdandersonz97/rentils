@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader, CardHeader, CardStatsFooter } from '../../common'
-import { fetchCompanyEmployee } from '../actions/employee'
+import { fetchCompanyEmployee } from '../../actions'
+
 
 class EmployeeInfo extends Component {
     componentDidMount(){
@@ -22,7 +23,7 @@ class EmployeeInfo extends Component {
                     <CardStats>
                         <CardStatsHeader icon='assignment' iconColor='white' color='blue'/>
                         <CardStatsBody category='RENTALS ASSIGNED' title={`${employee.rentals}`} />
-                        <CardStatsFooter link urlFooter={`/company/${companyId}/admin/employees/employee/${employeeId}/rentals`}>
+                        <CardStatsFooter link urlFooter={`/company/${companyId}/user/assignments`}>
                             See more
                         </CardStatsFooter>
                     </CardStats>
@@ -31,7 +32,7 @@ class EmployeeInfo extends Component {
                     <CardStats>
                         <CardStatsHeader icon='history' iconColor='white' color='purple'/>
                         <CardStatsBody category='RENTS HISTORY' title={employee.rents} />
-                        <CardStatsFooter link urlFooter={`/company/${companyId}/admin/employees/employee/${employeeId}/rents`}>
+                        <CardStatsFooter link urlFooter={`/company/${companyId}/user/assignments`}>
                             See more
                         </CardStatsFooter>
                     </CardStats>
@@ -40,7 +41,7 @@ class EmployeeInfo extends Component {
                     <CardStats>
                         <CardStatsHeader icon='attach_money' iconColor='white' color='green'/>
                         <CardStatsBody category='INCOMES' title={`$${employee.incomes}`} />
-                        <CardStatsFooter link urlFooter={`/company/${companyId}/admin/employees/employee/${employeeId}/incomes`}>
+                        <CardStatsFooter link urlFooter={`/company/${companyId}/user/incomes`}>
                             See more
                         </CardStatsFooter>
                     </CardStats>
@@ -49,7 +50,7 @@ class EmployeeInfo extends Component {
                     <CardStats>
                         <CardStatsHeader icon='money_off' iconColor='white' color='red'/>
                         <CardStatsBody category='EXPENSES' title={`$${employee.expenses}`} />
-                        <CardStatsFooter link urlFooter={`/company/${companyId}/admin/employees/employee/${employeeId}/expenses`}>
+                        <CardStatsFooter link urlFooter={`/company/${companyId}/user/expenses`}>
                             See more
                         </CardStatsFooter>
                     </CardStats>
@@ -58,9 +59,9 @@ class EmployeeInfo extends Component {
         )
     }
 }
-const mapStateToProps = ({ employees }) => {
+const mapStateToProps = ({ selectedEmployee }) => {
     return {
-        employee: employees.selectedEmployee
+        employee: selectedEmployee
     }
 }
 export default withRouter(connect(mapStateToProps, { fetchCompanyEmployee })(EmployeeInfo))
