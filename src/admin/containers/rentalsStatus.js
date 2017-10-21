@@ -15,14 +15,14 @@ class RentalsStatus extends Component {
         return[ 
             <div key="rentals" className='col-lg-6 col-md-6 col-sm-6'>
                 <CardStats>
-                    <CardStatsHeader icon='home' color='blue' />
+                    <CardStatsHeader icon='home' color='purple' />
                     <CardStatsBody title={rentalsTotal} category='Rentals' />
                     <CardStatsFooter link urlFooter={`/company/${companyId}/admin/rentals`}> See Details </CardStatsFooter>
                 </CardStats>
             </div>,
             <div key="homes" className='col-lg-6 col-md-6 col-sm-6'>
                 <CardStats>
-                    <CardStatsHeader icon='home' color='red' />
+                    <CardStatsHeader icon='home' color='orange' />
                     <CardStatsBody title={rentalsAvailable} category='Rentals availables' />
                     <CardStatsFooter link urlFooter={`/company/${companyId}/admin/rentals`}> See Details </CardStatsFooter>
                 </CardStats>

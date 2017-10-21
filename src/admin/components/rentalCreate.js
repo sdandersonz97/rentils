@@ -89,7 +89,6 @@ class RentalCreate extends Component {
             ? <RentalForm
                 title='New Rental'
                 category='Is time to create a new Rental'
-                color='blue'
                 values={newRental}
                 onInputChange={this.onRentalInputChange}
                 isRented={isRented}
@@ -101,7 +100,6 @@ class RentalCreate extends Component {
                 ? <RentForm
                     title='Rent'
                     category={`The range to rent this Rental is $${newRental.min} - $${newRental.max}`}
-                    color='blue'
                     values={newRent}
                     onInputChange={this.onRentInputChange}            
                     onScreenChange={this.onScreenChange}
