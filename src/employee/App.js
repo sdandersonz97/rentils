@@ -1,14 +1,25 @@
-import React, { Component } from 'react'
+import React,{ Component } from 'react'
+import PropTypes from 'prop-types'
+import AsideBarEmployee from './components/asideBar'
 
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        employ app
-      </div>
-    );
-  }
+class EmployeeApp extends Component {
+    state = {
+        companyName: ''
+    }
+    componentDidMount(){
+    }
+    render(){
+        return(
+            <div className='wrapper'> 
+              <AsideBarEmployee/>
+                <div className='main-panel'>
+                    {this.props.children}
+                </div>
+            </div>
+        )
+    }
 }
-
-export default App
+EmployeeApp.propTypes = {
+  children: PropTypes.array.isRequired
+}
+export default EmployeeApp
