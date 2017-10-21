@@ -7,7 +7,7 @@ const EmployeeListMin = ({ render, onClickChangeScreen, onSubmitAssignment }) =>
         <CardHeader title='Employees' category='All the Employees'/>                               
         <CardBody>
             <Table>
-                <TableHeader titles={['SELECT','COD','FULL NAME']}/>
+                <TableHeader titles={['SELECT', 'COD', 'FULL NAME', 'RENTALS']}/>
                 <TableBody>
                     { render() }
                 </TableBody>

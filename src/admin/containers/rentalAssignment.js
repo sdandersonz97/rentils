@@ -67,6 +67,9 @@ class RentalAssignment extends Component {
                 <td>
                     {employeesList[employeeId].fullname}
                 </td>
+                <td>
+                    {employeesList[employeeId].rentals}
+                </td>
             </tr>
         )
     }
@@ -81,7 +84,7 @@ class RentalAssignment extends Component {
                    onClickChangeScreen={this.onChangeScreen} 
                     render={() => 
                         Object.keys(rentalList)
-                            .filter(rental => rentalList[rental].available)
+                            .filter(rental => !rentalList[rental].assigned)
                             .map(this.renderRentalsRows)
                     }/>
                 : screen === 'employees' 

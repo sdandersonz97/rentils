@@ -47,7 +47,6 @@ class RentalCreate extends Component {
     render(){
         const { companyId } = this.props.match.params
         const { newRent, newRental, isRented, screen } = this.state
-        console.log(this.state)
         return  screen === 'RentalForm'
             ? <RentalForm
                 title='New Rental'
@@ -71,7 +70,6 @@ class RentalCreate extends Component {
                     onScreenChange={this.onScreenChange}
                     range={[newRental.min, newRental.max]}
                     cancelLink={`/company/${companyId}/admin/dashboard`}/>
-                    
                 : <div>Rental Saved !</div>
     }
 }
