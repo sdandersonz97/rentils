@@ -73,7 +73,11 @@ class RentalAssignment extends Component {
             </tr>
         )
     }
-    onChangeScreen = screen => this.setState({ screen })
+    onChangeScreen = screen => {
+        this.state.rentalsChecked.length > 0
+        ? this.setState({ screen })
+        : alert('ups! you need to select a least one rental')
+    }
     render(){
         const { rentalList, employeesList } = this.props
         const { screen } = this.state
@@ -89,7 +93,7 @@ class RentalAssignment extends Component {
                     }/>
                 : screen === 'employees' 
                     ? <EmployeeListMin
-                        onClickChangeScreen={this.onChangeScreen} 
+                        onClickChangeScreen={this.onChangeScreen.bind(this, 'rentals')} 
                         onSubmitAssignment={this.onSubmitAssignment}
                         render={() => 
                             Object.keys(employeesList)

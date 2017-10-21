@@ -22,8 +22,8 @@ class RentalCreate extends Component {
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
-        const { addCompanyRent, addCompanyRental } = this.props
-        const { newRent, newRental, isRented } = this.state
+        const { addCompanyRent } = this.props
+        const { newRental, isRented } = this.state
         e.preventDefault()
         const rentalId = addCompanyRental(companyId, {...newRental})
         isRented && this.onSaveRent(rentalId)
@@ -109,7 +109,7 @@ class RentalCreate extends Component {
                     cancelLink={`/company/${companyId}/admin/dashboard`}/>
                 : screen === 'EmployeeList' 
                     ? <EmployeeListMin 
-                            onClickChangeScreen={this.onScreenChange} 
+                            onClickChangeScreen={this.onScreenChange.bind(this, 'RentForm')} 
                             onSubmitAssignment={this.onSubmit}
                             render={() => 
                                 Object.keys(employeesList)
