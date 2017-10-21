@@ -1,11 +1,11 @@
 import { FETCH_COMPANY_RENTALS, FETCH_COMPANY_RENTAL } from './types'
 import { rentalsRef } from '../../utils/firebaseHelpers'
 
-export const addCompanyRental = (companyId, values, isRented) => () => {
-    const RentalId = rentalsRef(companyId).push().key 
+export const addCompanyRental = (companyId, values) => () => {
+    const rentalId = rentalsRef(companyId).push().key 
     values.available = true
-    rentalsRef(companyId).child(RentalId).set(values)
-    return RentalId
+    rentalsRef(companyId).child(rentalId).set(values)
+    return rentalId
 }
 
 export const fetchCompanyRental = (companyId, rentalId) => dispatch =>

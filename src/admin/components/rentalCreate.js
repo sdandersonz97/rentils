@@ -22,7 +22,7 @@ class RentalCreate extends Component {
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
-        const { addCompanyRent } = this.props
+        const { addCompanyRental } = this.props
         const { newRental, isRented } = this.state
         e.preventDefault()
         const rentalId = addCompanyRental(companyId, {...newRental})
@@ -33,7 +33,7 @@ class RentalCreate extends Component {
         const { companyId } = this.props.match.params
         const { addCompanyRent, addAssignment } = this.props
         const { newRent, selectedEmployee } = this.state
-        addCompanyRent(companyId, {...newRent, rentalId})
+        addCompanyRent(companyId, {...newRent, rentalId, selectedEmployee}, selectedEmployee)
         addAssignment(companyId, selectedEmployee, [rentalId])
     }
     resetState = () => {

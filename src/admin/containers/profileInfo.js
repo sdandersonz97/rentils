@@ -20,7 +20,7 @@ class EmployeeInfo extends Component {
                 <div className="col-md-6">
                     <CardStats>
                         <CardStatsHeader icon='assignment' iconColor='white' color='blue'/>
-                        <CardStatsBody category='RENTALS ACTIVITY' title={`${employee.rentalsRented}/${employee.rentals}`} />
+                        <CardStatsBody category='RENTALS ASSIGNED' title={`${employee.rentals}`} />
                         <CardStatsFooter link urlFooter={`/company/${companyId}/admin/employees/employee/${employeeId}/rentals`}>
                             See more
                         </CardStatsFooter>

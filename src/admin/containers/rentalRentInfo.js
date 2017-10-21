@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader } from '../../common'
 import { fetchRentInfo } from '../actions/rents'
+import { fetchCompanyEmployee } from '../actions/employees'
 import { dayLeft } from '../../utils/helpers'
 class RentalRentInfo extends Component {
     componentDidMount(){
@@ -11,7 +12,7 @@ class RentalRentInfo extends Component {
     }
     
     render(){
-        const { rentInfo } = this.props 
+        const { rentInfo, selectedEmployee } = this.props 
         
         return(
             <CardStats style={{minHeight:220}}>
@@ -23,7 +24,7 @@ class RentalRentInfo extends Component {
                         <strong>Tenant:</strong> {rentInfo.tenant} <br/>
                         <strong>Payment Day:</strong> {rentInfo.paymentDate} <br/>
                         <strong>Next Charge:</strong> {dayLeft(rentInfo.paymentDate)}<br/>
-                        <strong>Employee: </strong> ---- <br/>
+                        <strong>Employee: </strong> {selectedEmployee.fullname} <br/>
                         <strong>Price:</strong> {rentInfo.price}
                       </p>
                     : <h3 style={{marginTop:60, textAlign:'center'}}>AVAILABLE FOR RENT</h3>
@@ -34,10 +35,11 @@ class RentalRentInfo extends Component {
         )
     }
 }
-const mapStateToProps = ({ rentals }) => {
+const mapStateToProps = ({ rentals, employees }) => {
     const { rentInfo } = rentals.selectedRental
+    const { selectedEmployee } = employees
     return Object.keys(rentInfo).length > 0 
-        ? {rentInfo}
+        ? { rentInfo, selectedEmployee }
         : {}    
     }
-export default withRouter(connect(mapStateToProps, { fetchRentInfo })(RentalRentInfo))
+export default withRouter(connect(mapStateToProps, { fetchRentInfo, fetchCompanyEmployee })(RentalRentInfo))
