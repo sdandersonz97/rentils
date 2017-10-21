@@ -1,6 +1,6 @@
 import React from 'react'
 import EmployeeApp from './App'
-import AssignedRentals from './components/assignedRentals'
+import AssignedRentals from './containers/assignedRentals'
 import PrivateRoute from '../auth/components/privateRoute'
 import EmployeeDetails from './components/employeeDetails'
 const Routes = () => {
