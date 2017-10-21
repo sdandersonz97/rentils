@@ -3,19 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader } from '../../common'
 import { fetchRentInfo } from '../actions/rents'
-import { fetchCompanyEmployee } from '../actions/employees'
 import { dayLeft } from '../../utils/helpers'
 class RentalRentInfo extends Component {
     componentDidMount(){
         const { companyId, rentalId } = this.props.match.params 
         this.props.fetchRentInfo(companyId, rentalId)
     }
-    
     render(){
-        const { rentInfo, selectedEmployee } = this.props 
-        
+        const { rentInfo } = this.props 
         return(
-            <CardStats style={{minHeight:220}}>
+            <CardStats style={{minHeight:240}}>
                 <CardStatsHeader icon='assignment' iconColor='white' color={'blue'}/>
                 <CardStatsBody category='RENT INFO' extend>
                     
@@ -24,7 +21,6 @@ class RentalRentInfo extends Component {
                         <strong>Tenant:</strong> {rentInfo.tenant} <br/>
                         <strong>Payment Day:</strong> {rentInfo.paymentDate} <br/>
                         <strong>Next Charge:</strong> {dayLeft(rentInfo.paymentDate)}<br/>
-                        <strong>Employee: </strong> {selectedEmployee.fullname} <br/>
                         <strong>Price:</strong> {rentInfo.price}
                       </p>
                     : <h3 style={{marginTop:60, textAlign:'center'}}>AVAILABLE FOR RENT</h3>
@@ -35,11 +31,10 @@ class RentalRentInfo extends Component {
         )
     }
 }
-const mapStateToProps = ({ rentals, employees }) => {
+const mapStateToProps = ({ rentals,  }) => {
     const { rentInfo } = rentals.selectedRental
-    const { selectedEmployee } = employees
     return Object.keys(rentInfo).length > 0 
-        ? { rentInfo, selectedEmployee }
+        ? { rentInfo }
         : {}    
     }
-export default withRouter(connect(mapStateToProps, { fetchRentInfo, fetchCompanyEmployee })(RentalRentInfo))
+export default withRouter(connect(mapStateToProps, { fetchRentInfo })(RentalRentInfo))

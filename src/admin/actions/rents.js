@@ -15,14 +15,8 @@ export const addCompanyRent = (companyId, values, employeeId) => () => {
 }
 
 export const fetchRentInfo = (companyId, rentalId) => dispatch => 
-    rentsRef(companyId).child(rentalId).on('value', snap =>{ 
+    rentsRef(companyId).child(rentalId).on('value', snap => 
         dispatch({
             type: FETCH_RENT_INFO,
             rent: snap.val() ? snap.val() : {}
-        })
-        employeesRef(companyId).child(snap.val().uid).on('value', snap => 
-            dispatch({
-                type: FETCH_COMPANY_EMPLOYEE,
-                employee: snap.val() ? snap.val() : {}
-            }))
-    })
+        }))

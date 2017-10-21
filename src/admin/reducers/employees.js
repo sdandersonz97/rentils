@@ -11,7 +11,6 @@ const INITIAL_STATE = {
         expenses:0,
         rents:0,
         rentals: 0,
-        rentalsRented:0,
         rentalsAssigned:{}
     }
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Card, CardBody, CardHeader, Table, TableBody, TableHeader, DropdownButton } from '../../common'
 import { withRouter, Link } from 'react-router-dom'
 import { fetchCompanyRentals } from '../actions/rentals'
+import { fetchCompanyEmployees } from '../actions/employees'
 
 class RentalList extends Component { 
     state={
@@ -10,7 +11,8 @@ class RentalList extends Component {
     }
     componentDidMount(){
         const { companyId } = this.props.match.params
-        const { fetchCompanyRentals, rentalList } = this.props
+        const { fetchCompanyRentals, rentalList, fetchCompanyEmployees } = this.props
+        fetchCompanyEmployees(companyId)
         Object.keys(rentalList).length === 0 && fetchCompanyRentals(companyId)
     }
     onClickChangeFilter = filter => {
@@ -24,7 +26,7 @@ class RentalList extends Component {
         { name:'All', onClick: () => this.onClickChangeFilter('all') }
     ]
     renderRows = rentalId => {
-        const { rentalList } = this.props
+        const { rentalList, employeesList  } = this.props
         const { companyId } = this.props.match.params
         return(
             <tr key={rentalId}>
@@ -45,6 +47,9 @@ class RentalList extends Component {
                 </td>
                 <td>
                     {rentalList[rentalId].min} - {rentalList[rentalId].max}
+                </td>
+                <td>
+                    {rentalList[rentalId].assigned ? employeesList[rentalList[rentalId].assigned].fullname : 'NO'}
                 </td>
             </tr>
         )
@@ -69,7 +74,7 @@ class RentalList extends Component {
                     options={this.renderOptions()}
                 />
                 <Table>
-                    <TableHeader titles={['COD','ADDRESS','DISPONIBILITY','COST','DESCRIPTION','RANGE']}/>
+                    <TableHeader titles={['COD','ADDRESS','DISPONIBILITY','COST','DESCRIPTION','RANGE','ASSIGNED']}/>
                     <TableBody>
                         {this.filterRentalList().map(this.renderRows)}
                     </TableBody>
@@ -80,9 +85,10 @@ class RentalList extends Component {
     }
 }
 
-const mapStateToProps = ({ rentals }) => {
+const mapStateToProps = ({ rentals, employees }) => {
     return {
-        rentalList: rentals.rentalList
+        rentalList: rentals.rentalList,
+        employeesList: employees.employeesList
     }
 }
-export default withRouter(connect(mapStateToProps, { fetchCompanyRentals })(RentalList))
+export default withRouter(connect(mapStateToProps, { fetchCompanyRentals, fetchCompanyEmployees })(RentalList))

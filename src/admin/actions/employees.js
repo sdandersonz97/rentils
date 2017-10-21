@@ -24,7 +24,7 @@ export const addAssignment = (companyId, employeeId, rentalsId) => () =>
             timestamp: Date.now(),
             valid: true
         })
-        .then(() => rentalsRef(companyId).child(rentalId).update({ assigned: true }))
+        .then(() => rentalsRef(companyId).child(rentalId).update({ assigned: employeeId }))
         .then(() => employeesRef(companyId).child(employeeId).once('value', snap => 
             employeesRef(companyId).child(employeeId).update({ rentals: snap.val().rentals + 1 })
         ))
