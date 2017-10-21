@@ -7,7 +7,13 @@ const AsideBarEmployee = (props) => {
     const rootRoute = `/company/${companyId}/user`
     const getRoute = screen => `${rootRoute}/${screen}`
     return(
-        <AsideBar headerLink={getRoute('rentals')} header='Rentils' color='red'>
+        <AsideBar headerLink={getRoute('profile')} header='Rentils' color='red'>
+            <AsideBarItem 
+                    location={pathname} 
+                    route={getRoute('profile')} 
+                    title='Dashboard' 
+                    icon='dashboard'
+            />
             <AsideBarItem 
                     location={pathname} 
                     route={getRoute('assignments')} 
