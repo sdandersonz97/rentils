@@ -9,6 +9,7 @@ import EmployeesList from './containers/employeesList'
 import ProfileDetails from './components/profileDetails'
 import RentalAssignment from './containers/rentalAssignment'
 import ProfileRentals from './containers/profileRentals'
+import ExpensesList from './containers/ExpensesList'
 import PrivateRoute from '../auth/components/privateRoute'
 const Routes = () => {
     return (
@@ -22,6 +23,7 @@ const Routes = () => {
             <PrivateRoute exact path='/company/:companyId/admin/employees/employee/:employeeId/rentals' component={ProfileRentals} />
             <PrivateRoute exact path='/company/:companyId/admin/employees/employee/:employeeId' component={ProfileDetails} />
             <PrivateRoute exact path='/company/:companyId/admin/employees' component={EmployeesList} />
+            <PrivateRoute exact path='/company/:companyId/admin/expenses' component={ExpensesList} />
         </AdminApp>
     )
 }
