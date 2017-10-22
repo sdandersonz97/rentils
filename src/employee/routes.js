@@ -6,6 +6,7 @@ import EmployeeDetails from './components/employeeDetails'
 import RentalsToRent from './containers/rentalsToRent'
 import RentalsOperations from './containers/rentalsOperations'
 import IncomeList from './containers/incomesList'
+import ExpensesList from './containers/expensesList'
 const Routes = () => {
     return (
         <EmployeeApp>
@@ -14,6 +15,7 @@ const Routes = () => {
             <PrivateRoute exact path='/company/:companyId/user/rent' component={RentalsToRent} />
             <PrivateRoute exact path='/company/:companyId/user/operations' component={RentalsOperations} />
             <PrivateRoute exact path='/company/:companyId/user/incomes' component={IncomeList} />
+            <PrivateRoute exact path='/company/:companyId/user/expenses' component={ExpensesList} />
         </EmployeeApp>
     )
 }
