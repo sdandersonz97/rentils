@@ -32,6 +32,12 @@ const AsideBarEmployee = (props) => {
                     title='Operations' 
                     icon='build'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route='/signout' 
+                    title='Signout' 
+                    icon='exit_to_app'
+            />
         </AsideBar>
     )
 }
