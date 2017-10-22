@@ -7,6 +7,7 @@ import selectedEmployee from './selectedEmployee'
 import employeeRentals from '../employee/reducer/employeeRentals'
 import employeeRents from '../employee/reducer/employeeRents'
 import incomes from './incomes'
+import expenses from './expenses'
 const rootReducer = combineReducers({
     rentals,
     employees,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     selectedEmployee,
     employeeRentals,
     employeeRents,
-    incomes
+    incomes,
+    expenses
 })
 
 export default rootReducer
