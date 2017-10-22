@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup, employee, fullname, cod }) => {
     return(
-        <Card style={{width:'35%'}}>
+        <Card style={!employee ? {width:'35%'} : {width:'55%'}}>
             <CardBody>
                     <form onSubmit={onSubmit}>
                         <div className='form-group'>

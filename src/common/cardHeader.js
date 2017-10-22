@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export const CardHeader = ({title, category, color, style}) => (
     <header className='card-header' style={style} data-background-color={color}>
-        <h4 className='title'>{title}</h4>
+        <h4 style={{fontSize:40, color:'white'}}>{title}</h4>
         <p className='category'>{category}</p>
     </header>
 )
