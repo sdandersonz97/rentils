@@ -9,22 +9,31 @@
 }
 .banner {
     display:flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     background-image:  url(../img/banner.jpg);
     background-repeat: norepeat;
     background-size: cover;
     background-position: center center;
-    height: 50vh;
+    height: 100vh;
     max-width: 100%;
+    box-shadow: 2px 2px 2px #888888;
 }
 .title {
-    display: block;
-    line-height: 1.23;
-    letter-spacing: 0.1rem;
-    font-size: 4.3rem;
-    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
     color: white;
+    text-transform: uppercase;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 4rem;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background-color: rgba(128, 128, 128, 0.19);
+    border-radius: 16px;
+    text-align: center;
 }
 .tableCell {
     position: relative;
@@ -43,7 +52,7 @@
     justify-content:center; 
     align-items:center;
     background-color: #fff;
-    border: rgb(160, 154, 154) 1px solid;
+    border: rgb(226, 220, 220) 1px solid;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #888888;
     padding: 10px;
@@ -59,4 +68,5 @@
     min-height: 50vh;
     
 }
+
 

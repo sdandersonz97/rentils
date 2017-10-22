@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-export const Card = ({ children, screen, size }) => (
-    <section className='content'>
+export const Card = ({ children, screen, size, style }) => (
+    <section className='content' style={style}>
         <div className='container-fluid'>
             <div className='row'>
                 <div className={`col-${ screen || 'md' }-${ size || 12 }`}>

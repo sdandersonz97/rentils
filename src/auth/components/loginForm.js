@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import AuthForm from './authForm'
+import Nav from '../../public/components/nav'
 import { authUser } from '../actions'
 import { connect } from 'react-redux'
+import { styles } from '../styles/style'
 class LoginForm extends Component {
     state = {
         email: '',
@@ -17,12 +19,17 @@ class LoginForm extends Component {
     render(){
         const { email, password } = this.state
         return(
+        <section style={styles.sectionStyle}>
+            <div style={{ flexDirection: 'row', width:'100%' }}>
+                <Nav/>
+            </div>
            <AuthForm
                 email={email}
                 password={password}
                 onInputChange={this.onInputChange}
                 onSubmit={this.onSubmit}
            />
+        </section>
         )
     }
 }
