@@ -69,27 +69,33 @@ class AssignedRentals extends Component {
         return range
     }
     onNext = () => this.state.selectedRental ? this.onScreenChange('RentForm') : alert('ups!. you need to select a rental')
+    renderButton = () => <button className='btn btn-primary' onClick={this.onNext}>Next</button>
     render(){ 
         const { screen, newRent, selectedRental } = this.state
+        const rentalsKeys = this.filterRentalAvailables()
         return(
-            <div>
-
-                {screen === 'Rentals' 
-                    ?<AssignedRentalListMin
-                        renderTableHeader={this.renderTableHeader}
-                        render={() => this.filterRentalAvailables().map(this.renderRentalsRows)}
-                    />
-                    : screen === 'RentForm' 
-                        ? <RentForm
-                            values={newRent}
-                            onInputChange={this.onRentInputChange}            
-                            onScreenChange={this.onScreenChange}
-                            onSubmit={this.onSubmit}
-                            onSetRange={this.setRangeForRent}
+            <section className="content">
+                <div className="container-fluid">
+                    {screen === 'Rentals' 
+                        ?<AssignedRentalListMin
+                            renderTableHeader={this.renderTableHeader}
+                            renderButton={this.renderButton}
+                            render={() => rentalsKeys.length > 0 
+                                ? rentalsKeys.map(this.renderRentalsRows) 
+                                : <tr><td>Rentals to rent are not availables in this moment</td></tr>}
                         />
-                    :<div>SAVED</div>}
-                <button className='btn btn-primary' onClick={this.onNext}>Next</button>
-            </div>
+                        : screen === 'RentForm' 
+                            ? <RentForm
+                                values={newRent}
+                                onInputChange={this.onRentInputChange}            
+                                onScreenChange={this.onScreenChange}
+                                onSubmit={this.onSubmit}
+                                onSetRange={this.setRangeForRent}
+                            />
+                        :<div>SAVED</div>}
+                
+                </div>
+            </section>
         )
     }
 }

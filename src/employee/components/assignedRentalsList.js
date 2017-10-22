@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardBody, CardHeader, Table, TableBody, TableHeader } from '../../common'
 
-const AssignedRentalListMin = ({ render, renderTableHeader }) => { 
+const AssignedRentalListMin = ({ render, renderTableHeader, renderButton }) => { 
     return( 
         <Card>
         <CardHeader title='Rentals' category='All the rentals'/>                               
@@ -12,6 +12,7 @@ const AssignedRentalListMin = ({ render, renderTableHeader }) => {
                     { render() }
                 </TableBody>
             </Table>
+            {renderButton && renderButton()}
         </CardBody>
         </Card>
     )
