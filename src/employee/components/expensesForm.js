@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Card, CardHeader, CardBody, Input } from '../../common'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-const ExpensesForm = ({ onInputChange, values, onSubmit }) => {
-    const { mount, description } = values
-    return (
+import { addCompanyExpense } from '../actions/operations'
+class ExpensesForm extends Component {
+    state = { 
+        mount: 0,
+        description: ''
+    }
+    onSubmit = (e) => {
+        e.preventDefault()
+        const { companyId } = this.props.match.params
+        const { selectedRental, onScreenChange } = this.props
+        addCompanyExpense(companyId, {
+            ...this.state, 
+            rentalId:selectedRental, 
+            uid: localStorage.getItem('token')})
+        this.resetState()
+        onScreenChange('saved','')
+    }
+    resetState = () => this.setState({ mount: 0, description: '' })
+    render(){
+        const { mount, description } = this.state
+        return (
             <Card size='9'>
                 <CardHeader 
                     title='expenses'
@@ -11,28 +30,31 @@ const ExpensesForm = ({ onInputChange, values, onSubmit }) => {
                     color=''
                 />
                 <CardBody>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={this.onSubmit}>
                         <Input
                             label='Mount'
                             type='number'
-                            onChange={onInputChange.bind(this,'mount')}
+                            onChange={mount => this.setState({ mount })}
                             value={mount}
+                            required
                         />
                         <label>Description</label>
                         <textarea 
                             className='form-control'
                             value={description}
-                            onChange={e => onInputChange('description',e.target.value)} 
+                            onChange={({target}) => this.setState({ description: target.value })}
+                            required
                         /> 
                         <button type='submit' className='btn btn primary'> submit </button>
                     </form>
                 </CardBody>
             </Card>
-    )
+        )
+    }
+    
 }
 ExpensesForm.propTypes = {
-    onInputChange: PropTypes.func.isRequired, 
-    values: PropTypes.object, 
-    onSubmit: PropTypes.func
+    onScreenChange: PropTypes.func, 
+    selectedRental: PropTypes.string.isRequired
 }
-export default ExpensesForm
+export default withRouter(ExpensesForm)
