@@ -6,12 +6,13 @@ import { TableHeader } from '../../common'
 import { withRouter } from 'react-router-dom'
 import { Expense } from '../../utils/constructors'
 import ExpensesForm from '../components/expensesForm'
-
+import { addCompanyExpense } from '../actions/operations'
 class RentalsOperations extends Component {
     state={
         payment:'',
         expense: new Expense(0,'',localStorage.getItem('token'),''),
-        screen:'RentalList'
+        screen:'RentalList',
+        selectedRental:''
     }
     componentDidMount(){
         const { companyId } = this.props.match.params
@@ -23,9 +24,19 @@ class RentalsOperations extends Component {
     })
     onSubmitExpenses = (e) => {
         e.preventDefault()
-
+        const { expense, selectedRental } = this.state
+        const { companyId } = this.props.match.params
+        addCompanyExpense(companyId, {...expense, rentalId:selectedRental})
+        this.resetState()
     }
-    onClickChangeScreen = screen => this.setState({ screen })
+    resetState = () => {
+        this.setState({
+            expense: new Expense(0,'',localStorage.getItem('token'),''),
+            screen:'Saved',
+            selectedRental:''
+        })
+    }
+    onClickChangeScreen = (screen, selectedRental) => this.setState({ screen, selectedRental })
     renderRentalsRows = rentalId => {
         const { employeeRentals } = this.props
         const { selectedRental } = this.state
@@ -33,8 +44,8 @@ class RentalsOperations extends Component {
         return(
             <tr key={employeeRentals}>
                 <td>
-                    <button className='btn btn-danger' onClick={()=>this.onClickChangeScreen('ExpensesForm')}>EXPENSE</button> 
-                    <button className={`btn btn-info ${disabled}`} onClick={()=>this.onClickChangeScreen('PaymentsForm')} >PAYMENT</button>
+                    <button className='btn btn-danger' onClick={()=>this.onClickChangeScreen('ExpensesForm', rentalId)}>EXPENSE</button> 
+                    <button className={`btn btn-info ${disabled}`} onClick={()=>this.onClickChangeScreen('PaymentsForm', rentalId)} >PAYMENT</button>
                 </td>
                 <td>
                     {employeeRentals[rentalId].cod}
