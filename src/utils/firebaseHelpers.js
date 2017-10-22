@@ -13,7 +13,7 @@ export const initFirebase = () => firebase.initializeApp(CONFIG)
 
 
 //database ref
-const rootRef = () => firebase.database().ref()
+export const rootRef = () => firebase.database().ref()
 export const usersRef = () => rootRef().child('/users')
 export const companyRef = () => rootRef().child('/companies')
 export const rentalsRef = companyId => companyRef().child(`${companyId}/rentals`)

@@ -20,6 +20,12 @@ const AsideBarEmployee = (props) => {
                     title='Assigned' 
                     icon='assignment'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route={getRoute('rent')} 
+                    title='Register a Rent' 
+                    icon='create'
+            />
         </AsideBar>
     )
 }
