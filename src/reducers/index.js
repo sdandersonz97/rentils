@@ -5,13 +5,15 @@ import rentals from '../admin/reducers/rentals'
 import employees from '../admin/reducers/employees'
 import selectedEmployee from './selectedEmployee'
 import employeeRentals from '../employee/reducer/employeeRentals'
+import employeeRents from '../employee/reducer/employeeRents'
 const rootReducer = combineReducers({
     rentals,
     employees,
     auth,
     accouting,
     selectedEmployee,
-    employeeRentals
+    employeeRentals,
+    employeeRents
 })
 
 export default rootReducer

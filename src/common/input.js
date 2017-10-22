@@ -18,7 +18,7 @@ export const Input = ({ label, onChange, value, type, error, ...rest }) => (
 
 Input.propTypes = {
     label: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number]),
     error: PropTypes.string
 }

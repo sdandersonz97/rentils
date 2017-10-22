@@ -28,12 +28,12 @@ export const Expense = (mount, description, uid, rentalId) => {
     }
 }
 
-export const Payment = (mount, rentId, uid, type, quantity) => {
+export const Payment = (mount, rentId, uid, observation, quantity) => {
     return {
         mount,
         rentId,
         uid,
-        type,
+        observation,
         quantity
     }
 }

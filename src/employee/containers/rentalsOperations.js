@@ -4,12 +4,13 @@ import { fetchAssignments } from '../actions/rentals'
 import AssignedRentalListMin from '../components/assignedRentalsList'
 import { TableHeader } from '../../common'
 import { withRouter } from 'react-router-dom'
-import { Expense } from '../../utils/constructors'
+import { Expense, Payment } from '../../utils/constructors'
 import ExpensesForm from '../components/expensesForm'
-import { addCompanyExpense } from '../actions/operations'
+import IncomesForm from '../components/incomesForm'
+import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
 class RentalsOperations extends Component {
     state={
-        payment:'',
+        payment: new Payment(0,'',localStorage.getItem('token'),'',0),
         expense: new Expense(0,'',localStorage.getItem('token'),''),
         screen:'RentalList',
         selectedRental:''
@@ -22,16 +23,42 @@ class RentalsOperations extends Component {
         ...this.state,
         expense: { ...this.state.expense, [input]:value }
     })
+    onQuantityChange = ( price, value ) => {
+        value >= 0 && 
+        this.setState({
+            ...this.state,
+            payment: { ...this.state.payment, mount: price * value, quantity: value }
+        })
+    }
     onSubmitExpenses = (e) => {
         e.preventDefault()
         const { expense, selectedRental } = this.state
         const { companyId } = this.props.match.params
         addCompanyExpense(companyId, {...expense, rentalId:selectedRental})
-        this.resetState()
+        this.resetExpenseState()
     }
-    resetState = () => {
+    onSubmitPayment = (e) => {
+        e.preventDefault()
+        const { employeeRents } = this.props
+        const { payment, selectedRental } = this.state
+        const { companyId } = this.props.match.params
+        addCompanyIncome(companyId, {
+            ...payment, 
+            rentalId: selectedRental, 
+            tenant: employeeRents[selectedRental].tenant
+        })
+        this.resetIncomeState()
+    }
+    resetExpenseState = () => {
         this.setState({
             expense: new Expense(0,'',localStorage.getItem('token'),''),
+            screen:'Saved',
+            selectedRental:''
+        })
+    }
+    resetIncomeState = () => {
+        this.setState({
+            payment: new Payment(0,'',localStorage.getItem('token'),'',0),
             screen:'Saved',
             selectedRental:''
         })
@@ -61,9 +88,8 @@ class RentalsOperations extends Component {
     }
     renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'DISPONIBILITY']}/>
     render(){
-        const { employeeRentals } = this.props
-        const { screen } = this.state
-        console.log(this.state.expense)
+        const { employeeRentals, employeeRents } = this.props
+        const { screen, payment, expense, selectedRental } = this.state
         return (
             <section className="content">
                 <div className="container-fluid">
@@ -74,11 +100,17 @@ class RentalsOperations extends Component {
                             }
                         />
                         : screen === 'PaymentsForm' 
-                            ? <div> payments </div>
+                            ? <IncomesForm
+                                onInputChange={this.onIncomesInputChange}
+                                onQuantityChange={this.onQuantityChange}
+                                values={payment}
+                                rentValues={employeeRents[selectedRental]}
+                                onSubmit={this.onSubmitPayment}
+                            />
                             : screen === 'ExpensesForm' 
                                 ? <ExpensesForm 
                                     onInputChange={this.onExpensesInputChange}
-                                    values={this.state.expense}
+                                    values={expense}
                                     onSubmit={this.onSubmitExpenses}
                                 />
                                 : <div> Saved </div> 
@@ -88,9 +120,10 @@ class RentalsOperations extends Component {
         )
     }
 }
-const mapStateToProps = ({ employeeRentals }) => {
+const mapStateToProps = ({ employeeRentals, employeeRents }) => {
     return {
-        employeeRentals
+        employeeRentals,
+        employeeRents
     }
 }
 export default withRouter(connect(mapStateToProps,{ fetchAssignments })(RentalsOperations))

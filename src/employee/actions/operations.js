@@ -1,12 +1,21 @@
-import { expensesRef, employeeRef, accountingRef } from '../../utils/firebaseHelpers'
+import { expensesRef, employeeRef, incomesRef, accountingRef } from '../../utils/firebaseHelpers'
 
 export const addCompanyExpense = (companyId, values) => 
     expensesRef(companyId).push(values)
-    .then(() => updateAccountingCompany(companyId, values.mount))
-    .then(() => updateAccountingEmployee(companyId, values.uid, values.mount))
+    .then(() => updateAccountingCompany(companyId, values.mount, 'expenses'))
+    .then(() => updateAccountingEmployee(companyId, values.uid, values.mount, 'expenses'))
 
-const updateAccountingCompany = (companyId, mount) => accountingRef(companyId).child('expenses')
-    .transaction(expenses => expenses += Number(mount))
+export const addCompanyIncome = (companyId, values) => { 
+    values.quantity = Number(values.quantity)
+    incomesRef(companyId).push(values)
+    .then(() => updateAccountingCompany(companyId, values.mount, 'incomes'))
+    .then(() => updateAccountingEmployee(companyId, values.uid, values.mount, 'incomes'))
+}
 
-const updateAccountingEmployee = (companyId, uid, mount) => employeeRef(companyId, uid).child('expenses')
-    .transaction(expenses => expenses += Number(mount))
+const updateAccountingCompany = (companyId, mount, type) => accountingRef(companyId).child(type)
+    .transaction(transaction => transaction += Number(mount))
+
+const updateAccountingEmployee = (companyId, uid, mount, type) => employeeRef(companyId, uid).child(type)
+    .transaction(transaction => transaction += Number(mount))
+
+
