@@ -18,3 +18,22 @@ export const Rent = (price, tenant, paymentDate, rentalId, uid) => {
         uid
     }
 }
+
+export const Expense = (mount, description, uid, rentalId) => {
+    return {
+        mount,
+        description,
+        uid,
+        rentalId
+    }
+}
+
+export const Payment = (mount, rentId, uid, type, quantity) => {
+    return {
+        mount,
+        rentId,
+        uid,
+        type,
+        quantity
+    }
+}
