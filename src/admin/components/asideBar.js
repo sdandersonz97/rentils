@@ -50,6 +50,12 @@ const AsideBarAdmin = (props) => {
                     title='Logout' 
                     icon='exit_to_app'
             />
+            <AsideBarItem 
+                    location={pathname} 
+                    route={getRoute('reports')} 
+                    title='Reports' 
+                    icon='list'
+            />
         </AsideBar>
     )
 }
