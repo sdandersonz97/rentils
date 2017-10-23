@@ -5,7 +5,7 @@ import RentForm from './rentForm'
 import EmployeeListMin from './employeeListMin'
 import { withRouter } from 'react-router-dom'
 import { addCompanyRental } from '../actions/rentals'
-import { addCompanyRent } from '../actions/rents'
+import { addCompanyRent } from '../../actions'
 import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 import { Rental, Rent } from '../constructors'
 class RentalCreate extends Component {
@@ -31,7 +31,7 @@ class RentalCreate extends Component {
     }
     onSaveRent = rentalId => {
         const { companyId } = this.props.match.params
-        const { addCompanyRent, addAssignment } = this.props
+        const { addAssignment } = this.props
         const { newRent, selectedEmployee } = this.state
         addCompanyRent(companyId, {...newRent, rentalId, selectedEmployee}, selectedEmployee)
         addAssignment(companyId, selectedEmployee, [rentalId])
@@ -120,4 +120,4 @@ const mapStateToProps = ({ employees }) => {
         employeesList: employees.employeesList
     }
 }
-export default withRouter(connect(mapStateToProps, { addCompanyRental, addCompanyRent, fetchCompanyEmployees, addAssignment })(RentalCreate))
+export default withRouter(connect(mapStateToProps, { addCompanyRental, fetchCompanyEmployees, addAssignment })(RentalCreate))
