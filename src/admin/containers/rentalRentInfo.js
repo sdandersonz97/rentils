@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader } from '../../common'
 import { fetchRentInfo } from '../actions/rents'
 import { dayLeft } from '../../utils/helpers'
+import moment from 'moment'
 class RentalRentInfo extends Component {
     componentDidMount(){
         const { companyId, rentalId } = this.props.match.params 
@@ -19,7 +20,7 @@ class RentalRentInfo extends Component {
                     {rentInfo 
                     ? <p style={{marginTop:60, textAlign:'left'}}>
                         <strong>Tenant:</strong> {rentInfo.tenant} <br/>
-                        <strong>Payment Day:</strong> {rentInfo.paymentDate} <br/>
+                        <strong>Payment Day:</strong> {moment(rentInfo.paymentDate).format("DD/MM/YYYY")} <br/>
                         <strong>Next Charge:</strong> {dayLeft(rentInfo.paymentDate)}<br/>
                         <strong>Price:</strong> {rentInfo.price}
                       </p>
