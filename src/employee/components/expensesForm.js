@@ -15,7 +15,9 @@ class ExpensesForm extends Component {
         addCompanyExpense(companyId, {
             ...this.state, 
             rentalId:selectedRental, 
-            uid: localStorage.getItem('token')})
+            uid: localStorage.getItem('token'),
+            timestamp: Date.now()
+        })
         this.resetState()
         onScreenChange('saved','')
     }

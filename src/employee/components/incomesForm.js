@@ -25,7 +25,9 @@ class IncomesForm extends Component {
         addCompanyIncome(companyId, {
             ...this.state, 
             rentalId: employeeRents[selectedRental].rentalId,
-            tenant: employeeRents[selectedRental].tenant
+            uid: localStorage.getItem('token'),
+            tenant: employeeRents[selectedRental].tenant,
+            timestamp: Date.now()
         })
         this.resetState()
         onScreenChange('Saved', '')
