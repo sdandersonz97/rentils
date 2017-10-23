@@ -21,6 +21,6 @@ const getAlert = days => {
 }
 export const dayLeft = paymentDate => {
     const oneDay = 1000*60*60*24
-    const days = Math.floor(( Date.parse(paymentDate) -  Date.now()) / oneDay)
+    const days = Math.floor(( paymentDate -  Date.now()) / oneDay)
     return <span>{days} Days left {days <= info[0] && getAlert(days)} </span>
 }
