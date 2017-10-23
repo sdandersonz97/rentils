@@ -11,7 +11,8 @@ class WeekReport extends Component {
     }
     filterIncomes = () => {
         const { incomes } = this.props
-        const incomesKeys = Object.keys(incomes)
+        const weekAgo = 1000 * 60 * 60* 24 * 7
+        const incomesKeys = Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo  )
         return incomesKeys
     }
     renderRows = incomesId => {
@@ -26,19 +27,22 @@ class WeekReport extends Component {
     }
     render(){
         return(
-            <Table>
-                <TableHeader  titles={['MOUNT','MONTHS PAID', 'TENANT']}/>
-                <TableBody>
-                    {this.filterIncomes().map(this.renderRows)}
-                </TableBody>
-                <button onClick={()=>window.print()}> Print </button>
-            </Table>
+            <div>
+                <Table>
+                    <TableHeader  titles={['MOUNT','MONTHS PAID', 'TENANT']}/>
+                    <TableBody>
+                        {this.filterIncomes().map(this.renderRows)}
+                    </TableBody>
+                    <button onClick={()=>window.print()}> Print </button>
+                </Table>
+            </div>
         )
     }
 }
-const mapStateToProps = ({ incomes }) => {
+const mapStateToProps = ({ incomes, expenses }) => {
     return{
-        incomes
+        incomes,
+        expenses
     }
 }
 export default withRouter(connect(mapStateToProps, { fetchCompanyIncomes })(WeekReport))
