@@ -12,30 +12,47 @@ class WeekReport extends Component {
     filterIncomes = () => {
         const { incomes } = this.props
         const weekAgo = 1000 * 60 * 60* 24 * 7
-        const incomesKeys = Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo  )
+        const incomesKeys = Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo)
         return incomesKeys
     }
-    renderRows = incomesId => {
+    renderPaymentsRows = incomesId => {
         const { incomes } = this.props
         return(
             <tr key={incomesId}>
-                <td>${incomes[incomesId].mount}</td>            
-                <td>{incomes[incomesId].quantity}</td>
+                <td>${incomes[incomesId].mount}</td>
+                <td>{incomes[incomesId].quantity}</td>            
                 <td>{incomes[incomesId].tenant}</td>
             </tr>
         )
     }
+    reduceIncomesToTotal = () => {
+        const { incomes } = this.props
+        const incomesKeys = this.filterIncomes()
+        return incomesKeys.reduce((a,c) => {
+            return incomes[c].mount + a
+        }, 0)   
+    }
     render(){
         return(
-            <div>
-                <Table>
-                    <TableHeader  titles={['MOUNT','MONTHS PAID', 'TENANT']}/>
-                    <TableBody>
-                        {this.filterIncomes().map(this.renderRows)}
-                    </TableBody>
+            <section className='row'>
+                <h1 className='text-center'>WEEK REPORT</h1>
+                <div className='col-md-12'>
+                    <h4 className='text-center'>PAYMENTS</h4>
+                    <Table>
+                        <TableHeader  titles={['MOUNT','MONTHS PAID', 'TENANT']}/>
+                        <TableBody>
+                            {this.filterIncomes().map(this.renderPaymentsRows)}
+                            <tr>
+                                <td>TOTAL:</td>
+                                <td></td>            
+                                <td>${this.reduceIncomesToTotal()}</td>
+                            </tr>
+                        </TableBody>
+                    </Table>
                     <button onClick={()=>window.print()}> Print </button>
-                </Table>
-            </div>
+                </div>
+              
+            </section>
         )
     }
 }
