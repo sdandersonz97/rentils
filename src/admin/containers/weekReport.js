@@ -9,11 +9,14 @@ class WeekReport extends Component {
         const { companyId } = this.props.match.params
         this.props.fetchCompanyIncomes(companyId)
     }
-    filterIncomes = () => {
-        const { incomes } = this.props
+    filter = type => {
+        const { incomes, expenses } = this.props
         const weekAgo = 1000 * 60 * 60* 24 * 7
-        const incomesKeys = Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo)
-        return incomesKeys
+        const keys = type === 'incomes' 
+            ? Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo)
+            : Object.keys(expenses).filter(expenses => expenses[expenses].timestamp  >= Date.now() - weekAgo)
+
+        return keys
     }
     renderPaymentsRows = incomesId => {
         const { incomes } = this.props
@@ -25,33 +28,56 @@ class WeekReport extends Component {
             </tr>
         )
     }
-    reduceIncomesToTotal = () => {
-        const { incomes } = this.props
-        const incomesKeys = this.filterIncomes()
-        return incomesKeys.reduce((a,c) => {
-            return incomes[c].mount + a
-        }, 0)   
+    renderExpensesRows = expensesId => {
+        const { expenses } = this.props
+        return(
+            <tr key={expensesId}>
+                <td>${expenses[expensesId].mount}</td>
+                <td>{expenses[expensesId].description}</td>            
+                <td>{expenses[expensesId].uid}</td>
+            </tr>
+        )
+    }
+    reduceIncomesToTotal = keys => keys.reduce((a,c) => this.props.incomes[c].mount + a, 0)
+    reduceExpensesToTotal = keys => keys.reduce((a,c) => this.props.expenses[c].mount + a, 0)
+    reduceToTotal = type => {
+        const { incomes, expenses } = this.props
+        const keys = this.filter(type)
+        return type === 'incomes' ? this.reduceIncomesToTotal(keys) : this.reduceExpensesToTotal(keys)  
     }
     render(){
         return(
-            <section className='row'>
+            <section className='content row'>
                 <h1 className='text-center'>WEEK REPORT</h1>
                 <div className='col-md-12'>
                     <h4 className='text-center'>PAYMENTS</h4>
                     <Table>
                         <TableHeader  titles={['MOUNT','MONTHS PAID', 'TENANT']}/>
                         <TableBody>
-                            {this.filterIncomes().map(this.renderPaymentsRows)}
+                            {this.filter('incomes').map(this.renderPaymentsRows)}
                             <tr>
                                 <td>TOTAL:</td>
                                 <td></td>            
-                                <td>${this.reduceIncomesToTotal()}</td>
+                                <td>${this.reduceToTotal('incomes')}</td>
                             </tr>
                         </TableBody>
                     </Table>
-                    <button onClick={()=>window.print()}> Print </button>
                 </div>
-              
+                <div className='col-md-12'>
+                    <h4 className='text-center'>EXPENSES</h4>
+                    <Table>
+                        <TableHeader  titles={['MOUNT', 'DESCRIPTION', 'EMPLOYEE']}/>
+                        <TableBody>
+                            {this.filter('expenses').map(this.renderExpensesRows)}
+                            <tr>
+                                <td>TOTAL:</td>
+                                <td></td>            
+                                <td>${this.reduceToTotal('expenses')}</td>
+                            </tr>
+                        </TableBody>
+                    </Table>
+                </div>
+                <button onClick={()=>window.print()}> Print </button>
             </section>
         )
     }
