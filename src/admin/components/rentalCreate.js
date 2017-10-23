@@ -33,7 +33,7 @@ class RentalCreate extends Component {
         const { companyId } = this.props.match.params
         const { addAssignment } = this.props
         const { newRent, selectedEmployee } = this.state
-        addCompanyRent(companyId, {...newRent, rentalId, selectedEmployee}, selectedEmployee)
+        addCompanyRent(companyId, {...newRent, rentalId, uid: selectedEmployee })
         addAssignment(companyId, selectedEmployee, [rentalId])
     }
     resetState = () => {
