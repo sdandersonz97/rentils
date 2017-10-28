@@ -13,7 +13,7 @@ class AssignedRentals extends Component {
     renderRentalsRows = rentalId => {
         const { employeeRentals } = this.props
         return(
-            <tr key={employeeRentals}>
+            <tr key={rentalId}>
                 <td>
                     {employeeRentals[rentalId].cod}
                 </td>

@@ -26,7 +26,7 @@ class AssignedRentals extends Component {
         const { employeeRentals } = this.props
         const { selectedRental } = this.state
         return(
-            <tr key={employeeRentals}>
+            <tr key={rentalId}>
                 <td>
                     <input type='radio' value={rentalId} onClick={this.onSelectRental} checked={selectedRental===rentalId}/>
                 </td>
@@ -57,7 +57,7 @@ class AssignedRentals extends Component {
         })
     }
     onScreenChange = screen => this.setState({ screen }) 
-    renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'Range']}/>
+    renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'RANGE']}/>
     filterRentalAvailables = () => {
         const { employeeRentals } = this.props
         return Object.keys(employeeRentals).filter(rental => employeeRentals[rental].available )

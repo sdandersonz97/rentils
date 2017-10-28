@@ -23,7 +23,7 @@ class RentalsOperations extends Component {
         const { selectedRental } = this.state
         const disabled = employeeRentals[rentalId].available ? 'disabled' : ''
         return(
-            <tr key={employeeRentals}>
+            <tr key={rentalId}>
                 <td>
                     <button className='btn btn-danger' onClick={()=>this.onScreenChange('ExpensesForm', rentalId)}>EXPENSE</button> 
                     <button className={`btn btn-info ${disabled}`} onClick={()=>this.onScreenChange('PaymentsForm', rentalId)} >PAYMENT</button>
