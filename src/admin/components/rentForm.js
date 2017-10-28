@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const RentForm = ({ title, category, color, onInputChange, values, onSubmit, cancelLink, range, onScreenChange }) => {
     const { price, tenant, paymentDate } = values
+    const isValid = !price >= range[0] && !price<=range[1] && !tenant && !paymentDate 
     return (
         <Card size='9'>
             <CardHeader 
@@ -18,6 +19,7 @@ const RentForm = ({ title, category, color, onInputChange, values, onSubmit, can
                         type='text'
                         onChange={onInputChange.bind(this,'tenant')}
                         value={tenant}
+                        required
                     />
                     <Input
                         label='Price'
@@ -26,15 +28,20 @@ const RentForm = ({ title, category, color, onInputChange, values, onSubmit, can
                         max={range[1]}
                         onChange={onInputChange.bind(this,'price')}
                         value={price}
+                        required
                     />
                     <Input
                         label='Payment Day'
-                        type='date'
-                        
+                        type='date'            
                         onChange={onInputChange.bind(this,'paymentDate')}
                         value={paymentDate}
+                        required
                     />
-                    <button onClick={()=>onScreenChange('EmployeeList')} className='btn btn primary'> Next </button>
+                    <button onClick={()=>onScreenChange('EmployeeList')} 
+                    className='btn btn primary' 
+                    disabled={isValid}> 
+                        Next 
+                    </button>
                     <button onClick={()=>onScreenChange('RentalForm')} className='btn btn primary'> Back </button>
                 </form>
             </CardBody>
