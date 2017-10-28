@@ -9,6 +9,7 @@ import IncomesForm from '../components/incomesForm'
 import PaymentNoteForm from '../components/paymentsNotesForm'
 import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
 import { dayLeft } from '../../utils/helpers'
+import { DropdownButton } from '../../common'
 class RentalsOperations extends Component {
     state={
         screen:'RentalList',
@@ -19,7 +20,11 @@ class RentalsOperations extends Component {
         this.props.fetchAssignments(companyId, localStorage.getItem('token'))
     }
     onScreenChange = (screen, selectedRental) => this.setState({ screen, selectedRental })
-
+    renderOptions = rentalId => [
+        { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+        { name:'PAYMENT', onClick: () => this.onScreenChange('PaymentsForm', rentalId)},
+        { name:'PAYMENT NOTE', onClick: () => this.onScreenChange('PaymentNoteForm', rentalId)}
+    ]
     renderRentalsRows = rentalId => {
         const { employeeRentals, employeeRents } = this.props
         const { selectedRental } = this.state
@@ -27,9 +32,10 @@ class RentalsOperations extends Component {
         return(
             <tr key={rentalId}>
                 <td>
-                    <button className='btn btn-danger' onClick={()=>this.onScreenChange('ExpensesForm', rentalId)}>EXPENSE</button> 
-                    <button className={`btn btn-info ${disabled}`} onClick={()=>this.onScreenChange('PaymentsForm', rentalId)} >PAYMENT</button>
-                    <button className={`btn btn-info ${disabled}`} onClick={()=>this.onScreenChange('PaymentNoteForm', rentalId)} >PAYMENT NOTE</button>
+                <DropdownButton 
+                    title='OPERATIONS'
+                    options={this.renderOptions(rentalId)}
+                />
                 </td>
                 <td>
                     {employeeRentals[rentalId].cod}
