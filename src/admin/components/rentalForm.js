@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { addCompanyRental } from '../actions/rentals'
 
@@ -12,22 +11,19 @@ class RentalForm extends Component {
         address:'',
         max:'',
         min:'',
-        description:'',
-        isRented:false
+        description:''
     }
     onInputChange = (input, value) => {
         this.setState({
             [input]: value
         })
     }
-    onCheckboxChange = () => {
-        this.setState({ isRented: !this.state.isRented })
-    }
     onsubmit = e => {
-        const { cod, cost, min, max, address, description } = this.state
+        const { cod, cost, min, max, address, description, isRented } = this.state
         const { companyId } = this.props.match.params
+        const { addCompanyRental } = this.props
         e.preventDefault()
-        const rentalId = addCompanyRental(companyId, {
+        const rentalId = this.props.addCompanyRental(companyId, {
             cod, 
             cost, 
             min, 
@@ -66,7 +62,7 @@ class RentalForm extends Component {
                             <div className='row'>
                                 <div className='col-md-6'>
                                 <Input
-                                    label='minimun for rent'
+                                    label='Minimun for rent'
                                     type='number'
                                     onChange={this.onInputChange.bind(this,'min')}
                                     value={min}
@@ -99,22 +95,12 @@ class RentalForm extends Component {
                                 value={description}
                                 required
                             />
-                            <div>
-                                <input type='checkbox' onChange={this.onCheckboxChange} checked={isRented} id='isRented'/> 
-                                <label htmlFor='isRented'>Is rented?</label>
-                            </div>
-                            {!isRented 
-                                ?<button type='submit' className='btn btn primary'> submit </button>
-                                :<button className='btn btn primary' onClick={() => this.props.onScreenChange('RentForm')}> next </button>
-                            }
+                            <button type='submit' className='btn btn primary'> Save </button>
                             <Link className='btn btn danger' to={`company/${companyId}/admin/dashboard`}> cancel </Link>
                         </form>
                     </CardBody>
                 </Card>
         )
     }
-}
-RentalForm.propTypes = {
-    onScreenChange: PropTypes.func
 }
 export default withRouter(connect(null, { addCompanyRental })(RentalForm))
