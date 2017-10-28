@@ -1,4 +1,4 @@
-import { expensesRef, employeeRef, incomesRef, accountingRef, employeeActivity } from '../../utils/firebaseHelpers'
+import { expensesRef, employeeRef, incomesRef, accountingRef, employeeActivity, rentsRef } from '../../utils/firebaseHelpers'
 
 export const addCompanyExpense = (companyId, values) => 
     expensesRef(companyId).push(values)
@@ -13,11 +13,14 @@ export const addCompanyIncome = (companyId, values) => {
     incomesRef(companyId).push(values)
     .then(() => updateAccountingCompany(companyId, values.mount, 'incomes'))
     .then(() => updateAccountingEmployee(companyId, values.uid, values.mount, 'incomes'))
+    .then(() => updatePaymentDate(companyId, values.rentalId, values.quantity))
     .then(() => addEmployeeActivity(companyId, values.uid, { 
         type: 'PAYMENT', 
         message: `Payment from ${values.tenant} of $${values.mount} for ${values.quantity} months`}))
 }
-
+const updatePaymentDate = (companyId, rentalId, months) => rentsRef(companyId).child(rentalId)
+    .once('value', snap =>  
+        rentsRef(companyId).child(rentalId).update({ paymentDate: snap.val().paymentDate + 1000 * 60 * 60 * 24 * 30 * months }))
 const updateAccountingCompany = (companyId, mount, type) => accountingRef(companyId).child(type)
     .transaction(transaction => transaction += Number(mount))
 
