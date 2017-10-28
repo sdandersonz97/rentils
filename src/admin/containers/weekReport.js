@@ -51,7 +51,15 @@ class WeekReport extends Component {
         const keys = this.filter(type)
         return type === 'incomes' ? this.reduceIncomesToTotal(keys) : this.reduceExpensesToTotal(keys)  
     }
+    calculatePercentageExpended(income, expense){
+        if(income > 0 ){
+           return Math.round(( expense / income) * 100)
+        }
+        return 0
+    }
     render(){
+        const totalIncomes = this.reduceToTotal('incomes')
+        const totalExpenses = this.reduceToTotal('expenses')
         return(
             <section className='content row'>
                 <h1 className='text-center'>WEEK REPORT</h1>
@@ -66,7 +74,7 @@ class WeekReport extends Component {
                                 <td></td>  
                                 <td></td>      
                                 <td></td>       
-                                <td>${this.reduceToTotal('incomes')}</td>
+                                <td>${totalIncomes}</td>
                             </tr>
                         </TableBody>
                     </Table>
@@ -81,7 +89,20 @@ class WeekReport extends Component {
                                 <td>TOTAL:</td>
                                 <td></td>          
                                 <td></td>  
-                                <td>${this.reduceToTotal('expenses')}</td>
+                                <td>${totalExpenses}</td>
+                            </tr>
+                        </TableBody>
+                    </Table>
+                </div>
+                <div className='col-md-12'>
+                    <h4 className='text-center'>FINAL REPORT</h4>
+                    <Table>
+                        <TableHeader  titles={['TOTAL INCOMES', 'TOTAL EXPENSES', '% EXPENDED']}/>
+                        <TableBody>
+                            <tr>
+                                <td>${totalIncomes}</td>         
+                                <td>${totalExpenses}</td>  
+                                <td>%{this.calculatePercentageExpended(totalIncomes,totalExpenses)}</td>
                             </tr>
                         </TableBody>
                     </Table>
