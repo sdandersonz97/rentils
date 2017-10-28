@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 import ExpensesForm from '../components/expensesForm'
 import IncomesForm from '../components/incomesForm'
 import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
+import { dayLeft } from '../../utils/helpers'
 class RentalsOperations extends Component {
     state={
         screen:'RentalList',
@@ -19,7 +20,7 @@ class RentalsOperations extends Component {
     onScreenChange = (screen, selectedRental) => this.setState({ screen, selectedRental })
 
     renderRentalsRows = rentalId => {
-        const { employeeRentals } = this.props
+        const { employeeRentals, employeeRents } = this.props
         const { selectedRental } = this.state
         const disabled = employeeRentals[rentalId].available ? 'disabled' : ''
         return(
@@ -36,6 +37,9 @@ class RentalsOperations extends Component {
                 </td>
                 <td>
                     {employeeRentals[rentalId].available ? 'AVAILABLE' : 'RENTED'}
+                </td>
+                <td>
+                    {employeeRents[rentalId] ? dayLeft(employeeRents[rentalId].paymentDate) : ''}
                 </td>
             </tr>
         )
@@ -69,9 +73,10 @@ class RentalsOperations extends Component {
         )
     }
 }
-const mapStateToProps = ({ employeeRentals }) => {
+const mapStateToProps = ({ employeeRentals, employeeRents }) => {
     return {
         employeeRentals,
+        employeeRents
     }
 }
 export default withRouter(connect(mapStateToProps,{ fetchAssignments })(RentalsOperations))
