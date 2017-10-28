@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader } from '../../common'
 import { fetchRentInfo } from '../actions/rents'
 import { dayLeft } from '../../utils/helpers'
@@ -12,6 +12,7 @@ class RentalRentInfo extends Component {
     }
     render(){
         const { rentInfo } = this.props 
+        const { companyId, rentalId } = this.props.match.params 
         return(
             <CardStats style={{minHeight:240}}>
                 <CardStatsHeader icon='assignment' iconColor='white' color={'blue'}/>
@@ -24,7 +25,10 @@ class RentalRentInfo extends Component {
                         <strong>Next Charge:</strong> {dayLeft(rentInfo.paymentDate)}<br/>
                         <strong>Price:</strong> {rentInfo.price}
                       </p>
-                    : <h3 style={{marginTop:60, textAlign:'center'}}>AVAILABLE FOR RENT</h3>
+                    : <div style={{ marginTop:60, textAlign:'center' }}>
+                        <h3 >AVAILABLE FOR RENT</h3>
+                        <Link style={{ alignSelf:'center' }} to={`/company/${companyId}/admin/rentals/rental/${rentalId}/rent`}> Add Rent </Link>
+                    </div>
                     }
                   
                 </CardStatsBody>

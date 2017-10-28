@@ -2,6 +2,7 @@ import React from 'react'
 import AdminApp from './App'
 import Dashboard from './components/dashboard'
 import RentalForm from './components/rentalForm'
+import RentForm from './components/rentForm'
 import RentalList from './containers/rentalList'
 import RentalDetails from './components/rentalDetails'
 import Reports from './components/reports'
@@ -20,6 +21,7 @@ const Routes = () => {
             <PrivateRoute exact path='/company/:companyId/admin/dashboard' component={Dashboard} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals/new' component={RentalForm} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals/assignments' component={RentalAssignment} />
+            <PrivateRoute exact path='/company/:companyId/admin/rentals/rental/:rentalId/rent' component={RentForm} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals/rental/:rentalId' component={RentalDetails} />
             <PrivateRoute exact path='/company/:companyId/admin/rentals' component={RentalList} />
             <PrivateRoute exact path='/company/:companyId/admin/employees/new' component={EmployeeForm} />

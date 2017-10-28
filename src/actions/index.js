@@ -13,6 +13,7 @@ export const fetchCompanyEmployee = (companyId, uid) => dispatch =>
 export const addCompanyRent = (companyId, values) =>  {
     const updates = {}
     values.paymentDate = Date.parse(values.paymentDate)
+    values.price = parseFloat(values.price)
     updates[`/companies/${companyId}/rentals/${values.rentalId}/available/`] = false
     employeesRef(companyId).child(`${values.uid}/rents`).once('value', snap => {
         updates[`/companies/${companyId}/employees/${values.uid}/rents`] = 1 + snap.val()
