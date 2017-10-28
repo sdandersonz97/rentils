@@ -10,7 +10,6 @@ import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 import { Rental, Rent } from '../constructors'
 class RentalCreate extends Component {
     state = { 
-       newRental: new Rental('', 0, '', 0, 0, ''),
        newRent: new Rent(0,'',''),
        isRented: false,
        selectedEmployee: '',
@@ -87,24 +86,12 @@ class RentalCreate extends Component {
         const { employeesList } = this.props
         return  screen === 'RentalForm'
             ? <RentalForm
-                title='New Rental'
-                category='Is time to create a new Rental'
-                values={newRental}
-                onInputChange={this.onRentalInputChange}
-                isRented={isRented}
-                onCheckboxChange={this.onCheckboxChange}
-                onSubmit={this.onSubmit}
                 onScreenChange={this.onScreenChange}
-                cancelLink={`/company/${companyId}/admin/dashboard`}/>
+            />
             :  screen === 'RentForm' 
-                ? <RentForm
-                    title='Rent'
-                    category={`The range to rent this Rental is $${newRental.min} - $${newRental.max}`}
-                    values={newRent}
-                    onInputChange={this.onRentInputChange}            
+                ? <RentForm           
                     onScreenChange={this.onScreenChange}
-                    range={[newRental.min, newRental.max]}
-                    cancelLink={`/company/${companyId}/admin/dashboard`}/>
+                />
                 : screen === 'EmployeeList' 
                     ? <EmployeeListMin 
                             onClickChangeScreen={this.onScreenChange.bind(this, 'RentForm')} 
