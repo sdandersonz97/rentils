@@ -5,14 +5,14 @@ const fetchCompanyEmployeeRentals = (companyId, rentalId, dispatch) =>
     rentalsRef(companyId).child(rentalId).on('value', snapRental => 
         dispatch({
             type: FETCH_COMPANY_RENTAL_EMPLOYEE,
-            rental: snapRental.val(),
+            rental: snapRental.val() ? snapRental.val() : {},
             rentalId
         }))
 const fetchCompanyEmployeeRentalsRent = ( companyId, rentalId, dispatch ) => 
         rentsRef(companyId).child(rentalId).on('value', snapRent => 
         dispatch({
             type: FETCH_COMPANY_RENTAL_RENT_EMPLOYEE,
-            rent: snapRent.val(),
+            rent: snapRent.val() ? snapRent.val() : {} ,
             rentalId
         })
     )

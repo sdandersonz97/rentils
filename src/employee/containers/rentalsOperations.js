@@ -20,11 +20,31 @@ class RentalsOperations extends Component {
         this.props.fetchAssignments(companyId, localStorage.getItem('token'))
     }
     onScreenChange = (screen, selectedRental) => this.setState({ screen, selectedRental })
-    renderOptions = rentalId => [
-        { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
-        { name:'PAYMENT', onClick: () => this.onScreenChange('PaymentsForm', rentalId)},
-        { name:'PAYMENT NOTE', onClick: () => this.onScreenChange('PaymentNoteForm', rentalId)}
-    ]
+    renderOptions = rentalId => { 
+        const { employeeRentals, employeeRents } = this.props
+        if(employeeRentals[rentalId].available){
+            return [
+                { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+            ]
+        } else if(employeeRents[rentalId]){
+            if(employeeRents[rentalId].paymentNote){
+                return [
+                    { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+                    { name:'COMPLETE PAYMENT', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+                ]
+            } else {
+                return[
+                    { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+                    { name:'PAYMENT', onClick: () => this.onScreenChange('PaymentsForm', rentalId)},
+                    { name:'PAYMENT NOTE', onClick: () => this.onScreenChange('PaymentNoteForm', rentalId)}
+                ]
+            }
+        } else {
+            return [
+                { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+            ]
+        } 
+    }
     renderRentalsRows = rentalId => {
         const { employeeRentals, employeeRents } = this.props
         const { selectedRental } = this.state
