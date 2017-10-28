@@ -3,6 +3,9 @@ import { rentalsRef } from '../../utils/firebaseHelpers'
 
 export const addCompanyRental = (companyId, values) => () => {
     const rentalId = rentalsRef(companyId).push().key 
+    values.cost = parseFloat(values.cost)
+    values.min = parseFloat(values.min)
+    values.max = parseFloat(values.max)
     values.assigned = false
     values.available = true
     rentalsRef(companyId).child(rentalId).set(values)
