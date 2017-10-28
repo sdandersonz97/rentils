@@ -34,6 +34,12 @@ const AsideBarEmployee = (props) => {
             />
             <AsideBarItem 
                     location={pathname} 
+                    route={getRoute('paymentnotes')}  
+                    title='Payments Notes' 
+                    icon='list'
+            />
+            <AsideBarItem 
+                    location={pathname} 
                     route='/signout' 
                     title='Signout' 
                     icon='exit_to_app'

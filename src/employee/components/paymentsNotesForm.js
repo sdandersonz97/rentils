@@ -13,12 +13,16 @@ class PaymentNoteForm extends Component {
         const { companyId } = this.props.match.params
         const { employeeRents, selectedRental } = this.props
         const rest = employeeRents[selectedRental].price - this.state.mount 
+        const paymentDate = Date.now() + 1000*60*60*24*this.state.days
         addPaymentNote(companyId, { 
             ...this.state, 
             tenant: employeeRents[selectedRental].tenant,
             rest,
             rentalId: selectedRental, 
-            uid: localStorage.getItem('token')})
+            uid: localStorage.getItem('token'),
+            paymentDate 
+        })
+            
         e.preventDefault()
     
     }
