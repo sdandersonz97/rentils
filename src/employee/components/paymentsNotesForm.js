@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Card, CardHeader, CardBody, Input } from '../../common'
+import { addPaymentNote } from '../actions/operations'
 class PaymentNoteForm extends Component {
     state = {
         mount:'',
@@ -9,8 +10,17 @@ class PaymentNoteForm extends Component {
         description:'',
     }
     onSubmit = e => {
+        const { companyId } = this.props.match.params
+        const { employeeRents, selectedRental } = this.props
+        const rest = employeeRents[selectedRental].price - this.state.mount 
+        addPaymentNote(companyId, { 
+            ...this.state, 
+            tenant: employeeRents[selectedRental].tenant,
+            rest,
+            rentalId: selectedRental, 
+            uid: localStorage.getItem('token')})
         e.preventDefault()
-
+    
     }
     render(){
         const { mount, days, description } = this.state

@@ -1,4 +1,4 @@
-import { expensesRef, employeeRef, incomesRef, accountingRef, employeeActivity, rentsRef } from '../../utils/firebaseHelpers'
+import { expensesRef, employeeRef, incomesRef, paymentNoteRef, accountingRef, employeeActivity, rentsRef } from '../../utils/firebaseHelpers'
 
 export const addCompanyExpense = (companyId, values) => 
     expensesRef(companyId).push(values)
@@ -17,6 +17,15 @@ export const addCompanyIncome = (companyId, values) => {
     .then(() => addEmployeeActivity(companyId, values.uid, { 
         type: 'PAYMENT', 
         message: `Payment from ${values.tenant} of $${values.mount} for ${values.quantity} months`}))
+}
+
+export const addPaymentNote = (companyId, values) => {
+    values.mount = parseFloat(values.mount)
+    values.days = parseInt(values.days)
+    paymentNoteRef(companyId).push(values)
+    .then(() => addEmployeeActivity(companyId, values.uid, { 
+        type: 'PAYMENT', 
+        message: `Payment Note from ${values.tenant} of $${values.mount} because ${values.description}`}))
 }
 const updatePaymentDate = (companyId, rentalId, months) => rentsRef(companyId).child(rentalId)
     .once('value', snap =>  

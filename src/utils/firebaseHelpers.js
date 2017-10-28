@@ -25,7 +25,7 @@ export const employeesAssigmentsRef = (companyId, uid) => employeesRef(companyId
 export const employeeActivity = (companyId, uid) => employeesRef(companyId).child(`${uid}/activity`)
 export const expensesRef = companyId => companyRef().child(`${companyId}/expenses`)
 export const incomesRef = companyId => companyRef().child(`${companyId}/incomes`)
-
+export const paymentNoteRef = companyId => companyRef().child(`${companyId}/paymentNotes`)
 //auth helpers
 export const getCurrentUser = () => firebase.auth().currentUser
 export const signInWithEmailAndPassword = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
