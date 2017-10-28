@@ -4,6 +4,7 @@ import { Card, CardHeader, CardBody, Input } from '../../common'
 import PropTypes from 'prop-types'
 import { addCompanyIncome } from '../actions/operations'
 import { connect } from 'react-redux'
+import moment from 'moment'
 class IncomesForm extends Component {  
     state = { 
         mount: 0,
@@ -37,6 +38,7 @@ class IncomesForm extends Component {
         const { mount, observation, quantity  } = this.state
         const { employeeRents, selectedRental } = this.props
         const { tenant, price, paymentDate, rentalId } = employeeRents[selectedRental]
+        const time = moment(paymentDate).format("DD/MM/YYYY")
         return (
                 <Card size='9'>
                     <CardHeader 
@@ -52,8 +54,8 @@ class IncomesForm extends Component {
                                 disabled
                             />
                             <Input
-                                type='date'
-                                value={paymentDate}
+                                type='text'
+                                value={time}
                                 disabled
                             />
                             <Input
