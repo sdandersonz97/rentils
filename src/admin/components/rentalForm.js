@@ -18,12 +18,21 @@ class RentalForm extends Component {
             [input]: value
         })
     }
-    onsubmit = e => {
+    resetState = () => 
+        this.setState({
+            cod:'',
+            cost:'',
+            address:'',
+            max:'',
+            min:'',
+            description:''
+        })
+    onSubmit = e => {
         const { cod, cost, min, max, address, description, isRented } = this.state
         const { companyId } = this.props.match.params
-        const { addCompanyRental } = this.props
+        const { addCompanyRental, history } = this.props
         e.preventDefault()
-        const rentalId = this.props.addCompanyRental(companyId, {
+        const rentalId = addCompanyRental(companyId, {
             cod, 
             cost, 
             min, 
@@ -31,6 +40,8 @@ class RentalForm extends Component {
             address, 
             description
         })
+        this.resetState()
+        history.push(`/company/${companyId}/admin/rentals/rental/${rentalId}`)
     }
     render(){
         const { cod, cost, min, max, address, description, isRented } = this.state
