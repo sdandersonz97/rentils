@@ -6,6 +6,7 @@ import { TableHeader } from '../../common'
 import { withRouter } from 'react-router-dom'
 import ExpensesForm from '../components/expensesForm'
 import IncomesForm from '../components/incomesForm'
+import PaymentNoteForm from '../components/paymentsNotesForm'
 import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
 import { dayLeft } from '../../utils/helpers'
 class RentalsOperations extends Component {
@@ -28,6 +29,7 @@ class RentalsOperations extends Component {
                 <td>
                     <button className='btn btn-danger' onClick={()=>this.onScreenChange('ExpensesForm', rentalId)}>EXPENSE</button> 
                     <button className={`btn btn-info ${disabled}`} onClick={()=>this.onScreenChange('PaymentsForm', rentalId)} >PAYMENT</button>
+                    <button className={`btn btn-info ${disabled}`} onClick={()=>this.onScreenChange('PaymentNoteForm', rentalId)} >PAYMENT NOTE</button>
                 </td>
                 <td>
                     {employeeRentals[rentalId].cod}
@@ -66,7 +68,12 @@ class RentalsOperations extends Component {
                             selectedRental={selectedRental}
                             onScreenChange={this.onScreenChange}
                         />
-                        : <div> Saved </div> 
+                        : screen === 'PaymentNoteForm'
+                        ? <PaymentNoteForm
+                            selectedRental={selectedRental}
+                            onScreenChange={this.onScreenChange}
+                        />
+                        : <div> Saved </div>
                     }
                 </div>
             </section>
