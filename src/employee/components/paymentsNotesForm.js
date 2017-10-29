@@ -11,9 +11,10 @@ class PaymentNoteForm extends Component {
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
-        const { employeeRents, selectedRental } = this.props
+        const { employeeRents, selectedRental, onScreenChange } = this.props
         const rest = employeeRents[selectedRental].price - this.state.mount 
         const paymentDate = Date.now() + 1000*60*60*24*this.state.days
+        e.preventDefault()
         addPaymentNote(companyId, { 
             ...this.state, 
             tenant: employeeRents[selectedRental].tenant,
@@ -22,10 +23,10 @@ class PaymentNoteForm extends Component {
             uid: localStorage.getItem('token'),
             paymentDate 
         })
-            
-        e.preventDefault()
-    
+        this.resetState()
+        onScreenChange('RentalList')
     }
+    resetState = () => this.setState({ mount: '', days:7, description:'' })
     render(){
         const { mount, days, description } = this.state
         const { employeeRents, selectedRental } = this.props 
@@ -40,19 +41,27 @@ class PaymentNoteForm extends Component {
                     <CardBody>
                         <form onSubmit={this.onSubmit}>
                             <Input 
+                                label='Tenant'
                                 value={tenant}
                                 disabled
                             />
                             <Input 
+                                label='Monthly bills'
                                 value={price}
                                 disabled
                             />
                             <Input 
-                                label='Monthly Bills'
+                                label='Rest'
+                                value={price - mount}
+                                disabled
+                            />
+                            <Input 
+                                label='Mount'
                                 type='number'
                                 value={mount}
                                 onChange={mount => this.setState({ mount })}
                             />
+                            <label>Next Charge </label>
                             <select className='form-control' onChange={({target}) => this.setState({ days: target.value })}>
                                 <option value={7}>7 days</option>
                                 <option value={15}>15 days</option>
