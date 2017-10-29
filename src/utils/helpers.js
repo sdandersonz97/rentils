@@ -20,7 +20,12 @@ const getAlert = days => {
             : days <= alert && <i className="material-icons" style={errorStyle('#ea432c')}>error</i>
 }
 export const dayLeft = paymentDate => {
-    const oneDay = 1000*60*60*24
-    const days = Math.floor(( paymentDate -  Date.now()) / oneDay)
-    return <span>{days} Days left {days <= info[0] && getAlert(days)} </span>
+    if(paymentDate){
+        const oneDay = 1000*60*60*24
+        const days = Math.floor(( paymentDate -  Date.now()) / oneDay)
+        return <span>{days} Days left {days <= info[0] && getAlert(days)} </span>
+    } else {
+        return <span>---</span>
+    }
+    
 }
