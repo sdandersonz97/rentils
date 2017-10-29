@@ -21,7 +21,8 @@ class RentalsOperations extends Component {
     }
     onScreenChange = (screen, selectedRental) => this.setState({ screen, selectedRental })
     renderOptions = rentalId => { 
-        const { employeeRentals, employeeRents } = this.props
+        const { companyId } = this.props.match.params
+        const { employeeRentals, employeeRents, history } = this.props
         if(employeeRentals[rentalId].available){
             return [
                 { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
@@ -30,7 +31,8 @@ class RentalsOperations extends Component {
             if(employeeRents[rentalId].paymentNote){
                 return [
                     { name:'EXPENSE', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
-                    { name:'COMPLETE PAYMENT', onClick: () => this.onScreenChange('ExpensesForm', rentalId)},
+                    { name:'COMPLETE PAYMENT', onClick: () => 
+                        history.push(`/company/${companyId}/user/paymentnotes/${employeeRents[rentalId].paymentNote}`)},
                 ]
             } else {
                 return[
@@ -72,7 +74,7 @@ class RentalsOperations extends Component {
             </tr>
         )
     }
-    renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'DISPONIBILITY']}/>
+    renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'DISPONIBILITY', '']}/>
     render(){
         const { employeeRentals } = this.props
         const { selectedRental, screen } = this.state
