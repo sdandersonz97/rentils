@@ -17,7 +17,11 @@ class EmployeeInfo extends Component {
         return(
             <div className="row">
                 <div className="col-md-12">
-                    <CardHeader title={employee.fullname} style={{backgroundColor: '#1251c7', boxShadow: '3px 3px 3px #888888', borderRadius: 10}}/>
+                    <CardHeader title={employee.fullname} style={{
+                        textAlign: 'center', 
+                        backgroundColor: '#1251c7', 
+                        boxShadow: '3px 3px 3px #888888', 
+                        borderRadius: 10}}/>
                     </div>
                 <div className="col-md-6">
                     <CardStats>
