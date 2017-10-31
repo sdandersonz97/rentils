@@ -1,5 +1,5 @@
 import React from 'react'
-
+import moment from 'moment'
 const info = [7,4]
 const warning = [3,0]
 const alert = -1
@@ -28,4 +28,22 @@ export const dayLeft = paymentDate => {
         return <span>---</span>
     }
     
+}
+
+
+export const getWeekPayments = payments => {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    return Object.keys(payments)
+    .filter(payment => payments[payment].timestamp >= ( Date.now() - 1000*60*60*24 * 7 ))
+    .reduce((a,c)=>{
+        days.map((day,index) => {              
+            if(moment(payments[c].timestamp).format('ddd') === day){
+                !a[index]
+                ? a[index] = 0 + payments[c].mount
+                : a[index] = a[index] + payments[c].mount
+                return a
+            }  
+        })  
+        return a
+},[])
 }
