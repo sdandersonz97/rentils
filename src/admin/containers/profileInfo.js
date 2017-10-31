@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { CardStats, CardStatsBody, CardStatsHeader, CardHeader, CardStatsFooter } from '../../common'
 import { fetchCompanyEmployee } from '../actions/employees'
-
+import ProfileActivity from '../../employee/components/profileActivity'
 class EmployeeInfo extends Component {
     componentDidMount(){
         const { companyId, employeeId } = this.props.match.params 
@@ -15,7 +15,7 @@ class EmployeeInfo extends Component {
         return(
             <div className="row">
                 <div className="col-md-12">
-                    <CardHeader title={employee.fullname} style={{backgroundColor: '#1251c7', boxShadow: '3px 3px 3px #888888', borderRadius: 10}}/>
+                    <CardHeader title={employee.fullname} style={{textAlign:'center', backgroundColor: '#1251c7', boxShadow: '3px 3px 3px #888888', borderRadius: 10}}/>
                     </div>
                 <div className="col-md-6">
                     <CardStats>
@@ -52,6 +52,9 @@ class EmployeeInfo extends Component {
                             See more
                         </CardStatsFooter>
                     </CardStats>
+                </div>
+                <div className="col-md-12">
+                    <ProfileActivity activities={employee.activity ? employee.activity : {}}/>
                 </div>
             </div>
         )
