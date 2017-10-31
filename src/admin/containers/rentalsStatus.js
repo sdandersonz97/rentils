@@ -12,23 +12,15 @@ class RentalsStatus extends Component {
     render(){
         const { companyId } = this.props.match.params 
         const { rentalsTotal, rentalsAvailable } = this.props
-        return[ 
-            <div key="rentals" className='col-lg-6 col-md-6 col-sm-6'>
+        return(
+            <div className='col-lg-6 col-md-6 col-sm-6'>
                 <CardStats>
                     <CardStatsHeader icon='home' color='purple' />
-                    <CardStatsBody title={rentalsTotal} category='Rentals' />
-                    <CardStatsFooter link urlFooter={`/company/${companyId}/admin/rentals`}> See Details </CardStatsFooter>
-                </CardStats>
-            </div>,
-            <div key="homes" className='col-lg-6 col-md-6 col-sm-6'>
-                <CardStats>
-                    <CardStatsHeader icon='home' color='orange' />
-                    <CardStatsBody title={rentalsAvailable} category='Rentals availables' />
+                    <CardStatsBody title={`${rentalsAvailable}/${rentalsTotal}`} category='Rentals availables' />
                     <CardStatsFooter link urlFooter={`/company/${companyId}/admin/rentals`}> See Details </CardStatsFooter>
                 </CardStats>
             </div>
-            ]
-        
+        ) 
     }
 }
 
