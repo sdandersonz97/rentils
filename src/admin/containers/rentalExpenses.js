@@ -11,11 +11,16 @@ class RentalExpenses extends Component {
         return(
             <CardStats>
                 <CardStatsHeader icon='money_off' color='red' />
-                <CardStatsBody title='$400' category='EXPENSES' />
+                <CardStatsBody title={`$${this.props.expenses}`} category='EXPENSES' />
             </CardStats>
         )
     }
 }
 
-
-export default withRouter(connect()(RentalExpenses))
+const mapStateToProps = ({ rentals }) => {
+    const { selectedRental } = rentals
+    return {
+        expenses: selectedRental.expenses,
+    }
+}
+export default withRouter(connect(mapStateToProps)(RentalExpenses))
