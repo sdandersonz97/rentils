@@ -47,3 +47,23 @@ export const getWeekPayments = payments => {
         return a
 },[])
 }
+
+
+export const getMonthlyPayments = payments => {
+    const months=['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Agu','Sep','Oct','Nov','Dic']
+    const yearAgo =  Date.now() - 1000*60*60*24 * 365
+    return Object.keys(payments)
+    .filter(payment => payments[payment].timestamp >= yearAgo)
+    .reduce((a,c)=>{
+        months.map((month,index) => {              
+            if(moment(payments[c].timestamp).format('MMM') === month){
+                !a[index+1]
+                ? a[index+1] = 0 + payments[c].mount
+                : a[index+1] = a[index+1]+payments[c].mount
+                return a
+            }
+            
+        })  
+        return a
+},[])
+}
