@@ -3,15 +3,15 @@ import '../styles/publicStyles.css'
 import Nav from './nav'
 const Banner = () => {
     return(
-        <section className='banner'>
-            <div style={{ flexDirection: 'row', width:'100%' }}>
-                <Nav/>
+        <header>
+            <Nav/>
+            <div className='rentils-text-box'>
+                <h1>
+                    Rentils<br/>
+                    The platform for magnaments your rentals.
+                </h1>
             </div>
-            <h2 className='title' >
-                Rentils<br/>
-                The platform for magnaments your rentals !!
-            </h2>
-        </section>
+        </header>
     )
 }
 export default Banner
