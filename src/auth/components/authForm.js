@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, CardBody } from '../../common'
 import PropTypes from 'prop-types'
-
-const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup, employee, fullname, cod }) => {
+import { connect } from 'react-redux'
+const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup, employee, fullname, cod, error }) => {
     return(
         <Card style={!employee ? {width:'35%'} : {width:'55%'}}>
             <CardBody>
@@ -66,6 +66,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 </div>
                             </div>
                         }
+                        <div className='bg-danger'>{error}</div>
                         <button type='submit' className='btn btn primary'> Log in </button>
                     </form>
             </CardBody>
@@ -83,4 +84,9 @@ AuthForm.propTypes = {
     fullname: PropTypes.string, 
     cod: PropTypes.string,
 }
-export default AuthForm
+const mapStateToProps = ({ auth }) => {
+    return {
+        error: auth.messageError
+    }
+} 
+export default connect(mapStateToProps)(AuthForm)
