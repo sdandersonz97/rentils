@@ -339,8 +339,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 h1, .h1 {
-  font-size: 3.8em;
-  line-height: 1.15em;
+  margin: 0;
+  color: #fff;
+  font-size: 260%;
+  word-spacing: 4px;
+  letter-spacing: 1px;
 }
 
 h2, .h2 {
@@ -1449,7 +1452,7 @@ h2.title {
 
 body {
   background-color: #EEEEEE;
-  color: #3C4858;
+  color: rgb(255, 255, 255);
 }
 body.inverse {
   background: #333333;
@@ -1481,7 +1484,7 @@ blockquote p {
 }
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Lato', 'Arial', sans-serif;
   font-weight: 300;
   line-height: 1.5em;
 }

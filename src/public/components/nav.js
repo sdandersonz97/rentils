@@ -7,8 +7,8 @@ const Nav = () => (
                 <li><a href='#'>Who we are</a></li>
                 <li><a href='#'>How it works</a></li>
                 <li><a href='#'>Our customers</a></li>
-                <li><a href='#'>Sign in</a></li>
-                <li><a href='#'>Sign up</a></li>
+                <li><Link to='/login'>Sign in</Link></li>
+                <li><Link to='/signup'>Sign up</Link></li>
             </ul>
         </div>
     </nav>

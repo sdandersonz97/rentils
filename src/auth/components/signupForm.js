@@ -31,10 +31,13 @@ class SignupForm extends Component {
     render(){
         const { email, password, confirmPassword } = this.state
         return(
-            <section style={styles.sectionStyle}>
-                <div style={{ flexDirection: 'row', width:'100%' }}>
-                    <Nav/>
-                </div>
+            <header>
+                <Nav/>
+                <div style={{
+                    display:'flex', 
+                    flexDirection:'column',
+                    alignItems:'center'}}>
+                
                 <AuthForm
                     email={email}
                     password={password}
@@ -43,7 +46,8 @@ class SignupForm extends Component {
                     onSubmit={this.onSubmit}
                     signup
                 />
-            </section>
+                </div>
+            </header>
         )
     }
 }

@@ -7,8 +7,8 @@ const Banner = () => {
             <Nav/>
             <div className='rentils-text-box'>
                 <h1>
-                    Rentils<br/>
-                    The platform for magnaments your rentals.
+                    Rentils <br/>
+                    Never was so easy keep track of your rentals.
                 </h1>
             </div>
         </header>

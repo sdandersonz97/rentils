@@ -19,17 +19,20 @@ class LoginForm extends Component {
     render(){
         const { email, password } = this.state
         return(
-        <section style={styles.sectionStyle}>
-            <div style={{ flexDirection: 'row', width:'100%' }}>
+            <header>
                 <Nav/>
-            </div>
-           <AuthForm
-                email={email}
-                password={password}
-                onInputChange={this.onInputChange}
-                onSubmit={this.onSubmit}
-           />
-        </section>
+                <div style={{
+                    display:'flex', 
+                    flexDirection:'column',
+                    alignItems:'center'}}>
+                    <AuthForm
+                            email={email}
+                            password={password}
+                            onInputChange={this.onInputChange}
+                            onSubmit={this.onSubmit}
+                    />
+                </div>
+        </header>
         )
     }
 }
