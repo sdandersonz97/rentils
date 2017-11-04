@@ -1,7 +1,7 @@
 import React,{ Component } from 'react'
 import PropTypes from 'prop-types'
 import AsideBarEmployee from './components/asideBar'
-
+import NavBar from './components/nav'
 class EmployeeApp extends Component {
     state = {
         companyName: ''
@@ -13,6 +13,7 @@ class EmployeeApp extends Component {
             <div className='wrapper'> 
               <AsideBarEmployee/>
                 <div className='main-panel'>
+                    <NavBar/>
                     {this.props.children}
                 </div>
             </div>
