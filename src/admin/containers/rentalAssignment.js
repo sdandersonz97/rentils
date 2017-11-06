@@ -5,7 +5,7 @@ import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 import RentalListMin from '../components/rentalListMin'
 import EmployeeListMin from '../components/employeeListMin'
 import { withRouter } from 'react-router-dom'
-import { TableHeader } from '../../common'
+import { TableHeader, Card, CardBody } from '../../common'
 class RentalAssignment extends Component {
     state={
         screen:'rentals',
@@ -82,9 +82,9 @@ class RentalAssignment extends Component {
     renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS']}/>
     render(){
         const { rentalList, employeesList } = this.props
-        const { screen } = this.state
+        const { screen, rentalsChecked, selectedEmployee } = this.state
         return (
-            <div>
+            <div className='content'>
                 {screen === 'rentals'
                 ? <RentalListMin 
                     onClickChangeScreen={this.onChangeScreen} 
@@ -102,7 +102,11 @@ class RentalAssignment extends Component {
                             Object.keys(employeesList)
                                 .map(this.renderEmployeeRows)
                     }/>
-                    : <div> Saved </div>}
+                    : <Card>
+                        <CardBody>
+                           <h3> {`${rentalsChecked.length} rentals was assigned to ${employeesList[selectedEmployee].fullname}`} </h3>
+                        </CardBody>
+                    </Card>}
             </div>
         )
     }

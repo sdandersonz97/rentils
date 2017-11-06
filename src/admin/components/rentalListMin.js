@@ -4,16 +4,16 @@ import { Card, CardBody, CardHeader, Table, TableBody, TableHeader } from '../..
 const RentalListMin = ({ render, renderTableHeader, onClickChangeScreen }) => { 
     return( 
         <Card>
-        <CardHeader title='Rentals' category='All the rentals'/>                               
-        <CardBody>
-            <Table>
-                {renderTableHeader()}
-                <TableBody>
-                    { render() }
-                </TableBody>
-            </Table>
-            <button className='btn btn-primary' onClick={() => onClickChangeScreen('employees')}>Next</button>
-        </CardBody>
+            <CardHeader title='Rentals' category='All the rentals'/>                               
+            <CardBody>
+                <Table>
+                    {renderTableHeader()}
+                    <TableBody>
+                        { render() }
+                    </TableBody>
+                </Table>
+                <button className='btn btn-primary' onClick={() => onClickChangeScreen('employees')}>Next</button>
+            </CardBody>
         </Card>
     )
 }
