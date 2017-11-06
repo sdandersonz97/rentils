@@ -9,7 +9,8 @@ import {
   rentalsRef
 } from "../../utils/firebaseHelpers";
 import { FETCH_PAYMENTS_NOTES } from "./types";
-export const addCompanyExpense = (companyId, values) =>
+export const addCompanyExpense = (companyId, values) => {
+  values.mount = parseFloat(values.mount);
   expensesRef(companyId)
     .push(values)
     .then(() => updateAccountingCompany(companyId, values.mount, "expenses"))
@@ -30,7 +31,7 @@ export const addCompanyExpense = (companyId, values) =>
         message: `Expended $${values.mount} in ${values.description}`
       })
     );
-
+};
 export const addCompanyIncome = (companyId, values) => {
   values.quantity = Number(values.quantity);
   incomesRef(companyId)
