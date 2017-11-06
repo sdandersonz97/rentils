@@ -15,7 +15,7 @@ const AuthForm = ({
   error
 }) => {
   return (
-    <Card style={!employee ? { width: "35%" } : { width: "55%" }}>
+    <Card>
       {employee && (
         <CardHeader title="Employee" category="Register an employee" color="" />
       )}
