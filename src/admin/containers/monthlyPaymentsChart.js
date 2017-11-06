@@ -3,32 +3,14 @@ import { connect } from "react-redux";
 import { fetchCompanyIncomes } from "../actions/accounting";
 import { LineChart } from "../../common/";
 import { withRouter } from "react-router-dom";
-import { getMonthlyPayments } from "../../utils/helpers";
+import { getMonthlyPayments, months } from "../../utils/helpers";
 class MonthlyPaymentsChart extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
     this.props.fetchCompanyIncomes(companyId);
   }
   render() {
-    return (
-      <LineChart
-        labels={[
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Agu",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dic"
-        ]}
-        data={this.props.monthlyPayments}
-      />
-    );
+    return <LineChart labels={months} data={this.props.monthlyPayments} />;
   }
 }
 function mapStateToProps({ incomes }) {

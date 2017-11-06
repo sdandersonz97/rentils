@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCompanyExpenses } from "../actions/accounting";
 import { LineChart } from "../../common";
-import { getWeekPayments } from "../../utils/helpers";
+import { getWeekPayments, days } from "../../utils/helpers";
 import { withRouter } from "react-router-dom";
 class WeekExpensesChart extends Component {
   componentDidMount() {
@@ -10,14 +10,7 @@ class WeekExpensesChart extends Component {
     this.props.fetchCompanyExpenses(companyId);
   }
   render() {
-    return (
-      <LineChart
-        labels={["S", "M", "T", "W", "T", "F", "S"]}
-        data={this.props.weekExpenses}
-        title="Daily expenses"
-        cardColor="green"
-      />
-    );
+    return <LineChart labels={days} data={this.props.weekExpenses} />;
   }
 }
 function mapStateToProps({ expenses }) {
