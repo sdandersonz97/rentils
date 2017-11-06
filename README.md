@@ -13,6 +13,10 @@ When you create an company account you get access to your own space in the datab
 
 `npm start`
 
+## Test Account
+company account: 
+  email: test@test.com
+  Password: test@test.com
 ## How it works
 Rentils is an app designed to make easy the hard task of magnament rentals.
 First you need to signup as admin of your company, then you will get access to you own dashboard, also you have access to admin features like:
