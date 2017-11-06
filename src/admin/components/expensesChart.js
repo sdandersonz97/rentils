@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WeekExpensesChart from "../containers/weekExpensesChart";
 import MonthlyExpensesChart from "../containers/monthExpensesChart";
 import { Link, withRouter } from "react-router-dom";
+import { Card, CardBody, CardHeader } from "../../common";
 class ExpensesChart extends Component {
   state = {
     timeline: "week"
@@ -16,7 +17,7 @@ class ExpensesChart extends Component {
     const options = this.getOptions();
     const { companyId } = this.props.match.params;
     return (
-      <div className="card">
+      <Card>
         <div className="card-header card-chart" data-background-color={"red"}>
           {this.state.timeline === "week" ? (
             <WeekExpensesChart />
@@ -24,7 +25,7 @@ class ExpensesChart extends Component {
             <MonthlyExpensesChart />
           )}
         </div>
-        <div className="card-content">
+        <CardBody>
           <div className="dropdown" style={{ float: "right" }}>
             <button
               className="btn btn-xs dropdown-toggle"
@@ -56,8 +57,8 @@ class ExpensesChart extends Component {
             </ul>
           </div>
           <h4>{options.title} </h4>
-        </div>
-      </div>
+        </CardBody>
+      </Card>
     );
   }
 }
