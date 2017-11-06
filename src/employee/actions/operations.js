@@ -68,7 +68,7 @@ const addPaymentNoteToRent = (companyId, rentalId, paymentNote) => rentsRef(comp
 const updateAccountingCompany = (companyId, mount, type) => accountingRef(companyId).child(type)
     .transaction(transaction => transaction += Number(mount))
 
-const updateAccountingRental = (companyId, mount, rentalId, type) => rentalsRef(companyId).child(rentalId).child(type)
+const updateAccountingRental = (companyId, rentalId, mount, type) => rentalsRef(companyId).child(rentalId).child(type)
     .transaction(transaction => transaction += Number(mount))
 
 const updateAccountingEmployee = (companyId, uid, mount, type) => employeeRef(companyId, uid).child(type)
