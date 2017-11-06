@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, CardHeader, Table, TableBody, TableHeader } from '../../common'
+import { Card, CardBody, CardHeader, Table, TableBody } from '../../common'
 
 const RentalListMin = ({ render, renderTableHeader, onClickChangeScreen }) => { 
     return( 

@@ -28,7 +28,7 @@ class RentalForm extends Component {
             description:''
         })
     onSubmit = e => {
-        const { cod, cost, min, max, address, description, isRented } = this.state
+        const { cod, cost, min, max, address, description } = this.state
         const { companyId } = this.props.match.params
         const { addCompanyRental, history } = this.props
         e.preventDefault()
@@ -44,7 +44,7 @@ class RentalForm extends Component {
         history.push(`/company/${companyId}/admin/rentals/rental/${rentalId}`)
     }
     render(){
-        const { cod, cost, min, max, address, description, isRented } = this.state
+        const { cod, cost, min, max, address, description} = this.state
         const { companyId } = this.props.match.params
         return (
                 <Card size='7'>

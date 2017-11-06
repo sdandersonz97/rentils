@@ -12,7 +12,7 @@ class EmployeeInfo extends Component {
         this.props.fetchCompanyEmployee(companyId, employeeId)
     }
     render(){
-        const { companyId, employeeId } = this.props.match.params 
+        const { companyId } = this.props.match.params 
         const { employee } = this.props 
         return(
             <div className="row">

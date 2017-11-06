@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom'
 import ExpensesForm from '../components/expensesForm'
 import IncomesForm from '../components/incomesForm'
 import PaymentNoteForm from '../components/paymentsNotesForm'
-import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
 import { dayLeft } from '../../utils/helpers'
 import { DropdownButton, Card, CardBody } from '../../common'
 class RentalsOperations extends Component {
@@ -51,8 +50,6 @@ class RentalsOperations extends Component {
     }
     renderRentalsRows = rentalId => {
         const { employeeRentals, employeeRents } = this.props
-        const { selectedRental } = this.state
-        const disabled = employeeRentals[rentalId].available ? 'disabled' : ''
         return(
             <tr key={rentalId}>
                 <td>

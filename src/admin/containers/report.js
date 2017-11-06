@@ -59,7 +59,6 @@ class Report extends Component {
     reduceIncomesToTotal = keys => keys.reduce((a,c) => this.props.incomes[c].mount + a, 0)
     reduceExpensesToTotal = keys => keys.reduce((a,c) => this.props.expenses[c].mount + a, 0)
     reduceToTotal = type => {
-        const { incomes, expenses } = this.props
         const keys = this.filter(type)
         return type === 'incomes' ? this.reduceIncomesToTotal(keys) : this.reduceExpensesToTotal(keys)  
     }

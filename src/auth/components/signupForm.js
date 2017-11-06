@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import AuthForm from './authForm'
 import { signupCompany } from '../actions'
 import { connect } from 'react-redux'
-import { styles } from '../styles/style'
 import Nav from '../../public/components/nav'
 class SignupForm extends Component {
     state = {

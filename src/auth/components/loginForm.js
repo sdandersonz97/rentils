@@ -3,7 +3,6 @@ import AuthForm from './authForm'
 import Nav from '../../public/components/nav'
 import { authUser } from '../actions'
 import { connect } from 'react-redux'
-import { styles } from '../styles/style'
 class LoginForm extends Component {
     state = {
         email: '',

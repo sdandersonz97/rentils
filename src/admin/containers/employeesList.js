@@ -70,7 +70,6 @@ class EmployeesList extends Component {
         }
     }
     render(){
-        const { companyId } = this.props.match.params
         return( 
             <Card>
             <CardHeader title='Employees' category='All the Employees'/>                               

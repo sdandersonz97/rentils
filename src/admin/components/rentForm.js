@@ -3,7 +3,6 @@ import { Card, CardHeader, CardBody, Input, Table, TableBody, TableHeader } from
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { addCompanyRent } from '../../actions'
-import EmployeesListMin from './employeeListMin'
 import { fetchCompanyRental } from '../actions/rentals'
 import { fetchCompanyEmployees, addAssignment } from '../actions/employees'
 class RentForm extends Component {

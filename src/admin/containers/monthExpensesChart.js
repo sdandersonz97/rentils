@@ -19,8 +19,6 @@ class MonthlyExpensesChart extends Component {
     }
 }
 function mapStateToProps({ expenses }){
-    const months=['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','Jul','Agu','Sep','Oct','Nov','Dic']
-    const yearAgo =  Date.now() - 1000*60*60*24 * 365 
     return { 
         monthlyExpenses: getMonthlyPayments(expenses)
     }

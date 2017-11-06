@@ -64,7 +64,7 @@ class AssignedRentals extends Component {
     onNext = () => this.state.selectedRental ? this.onScreenChange('RentForm') : alert('ups!. you need to select a rental')
     renderButton = () => <button className='btn btn-primary' onClick={this.onNext}>Next</button>
     render(){ 
-        const { screen, newRent, selectedRental } = this.state
+        const { screen, newRent } = this.state
         const rentalsKeys = this.filterRentalAvailables()
         return(
             <section className="content">

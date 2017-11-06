@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Card, CardBody, CardHeader, Table, TableBody, TableHeader } from '../../common'
+import { Card, CardBody, CardHeader } from '../../common'
 import { fetchPaymentsNotes, completePaymentNote } from '../actions/operations'
-import { dayLeft } from '../../utils/helpers'
 class CompletePaymentNotes extends Component {
     componentDidMount(){
         const { companyId } = this.props.match.params

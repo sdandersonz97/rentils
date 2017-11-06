@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { fetchCompanyExpenses } from '../actions/accounting'
 import { LineChart } from '../../common'
 import { getWeekPayments } from '../../utils/helpers'
-import moment from 'moment'
 import { withRouter } from 'react-router-dom' 
 class WeekExpensesChart extends Component {
     componentDidMount(){
@@ -22,7 +21,6 @@ class WeekExpensesChart extends Component {
     }
 }
 function mapStateToProps({ expenses }){
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     return { 
         weekExpenses: getWeekPayments(expenses)
     }

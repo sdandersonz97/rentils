@@ -44,7 +44,6 @@ class ProfileRentals extends Component {
     }
     renderTableHeader = () => <TableHeader titles={['COD','ADDRESS', 'DISPONIBILITY']}/>
     render(){
-        const { rentalList, employeesRentals } = this.props
         const rentalsProfiles = this.filterEmployeeRentals()
         return(
             <RentalListMin

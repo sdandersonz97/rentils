@@ -13,8 +13,6 @@ export default function (state=INITIALSTATE, action){
             return INITIALSTATE
         case ERROR:
             return { ...state, messageError: action.payload.message }
-        case UNAUTH_USER:
-            return { ...state, authenticated: false }
         default:
             return state
     }

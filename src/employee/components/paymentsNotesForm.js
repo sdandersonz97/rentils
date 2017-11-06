@@ -29,7 +29,7 @@ class PaymentNoteForm extends Component {
     }
     resetState = () => this.setState({ mount: '', days:7, description:'' })
     render(){
-        const { mount, days, description } = this.state
+        const { mount, description } = this.state
         const { employeeRents, selectedRental } = this.props 
         const { tenant, price } = employeeRents[selectedRental]
         return (

@@ -1,5 +1,5 @@
 import { FETCH_COMPANY_EMPLOYEE } from './types'
-import { employeesRef, rentsRef, rentalsRef, rootRef, employeeActivity } from '../utils/firebaseHelpers'
+import { employeesRef, rentsRef, rootRef, employeeActivity } from '../utils/firebaseHelpers'
 
 
 export const fetchCompanyEmployee = (companyId, uid) => dispatch => 

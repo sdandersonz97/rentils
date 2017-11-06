@@ -64,23 +64,22 @@ class RentalList extends Component {
             : Object.keys(rentalList).filter(rental => !rentalList[rental].available )
     }
     render(){
-        const { rentalList } = this.props
         return( 
             <Card>
-            <CardHeader title='Rentals' category='All the rentals'/>                               
-            <CardBody>
-                <DropdownButton 
-                    title='filter'
-                    options={this.renderOptions()}
-                />
-                <Table>
-                    <TableHeader titles={['COD','ADDRESS','DISPONIBILITY','COST','DESCRIPTION','RANGE','ASSIGNED']}/>
-                    <TableBody>
-                        {this.filterRentalList().map(this.renderRows)}
-                    </TableBody>
-                </Table>
-            </CardBody>
-        </Card>
+                <CardHeader title='Rentals' category='All the rentals'/>                               
+                <CardBody>
+                    <DropdownButton 
+                        title='filter'
+                        options={this.renderOptions()}
+                    />
+                    <Table>
+                        <TableHeader titles={['COD','ADDRESS','DISPONIBILITY','COST','DESCRIPTION','RANGE','ASSIGNED']}/>
+                        <TableBody>
+                            {this.filterRentalList().map(this.renderRows)}
+                        </TableBody>
+                    </Table>
+                </CardBody>
+            </Card>
         )
     }
 }

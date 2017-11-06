@@ -3,7 +3,7 @@ import ChartistGraph from 'react-chartist'
 import PropTypes from 'prop-types'
 export class LineChart extends Component {
     render(){
-        const { labels, data, title, cardColor, category } = this.props
+        const { labels, data } = this.props
         const simpleLineChartData = {
             labels: labels,
             series: [data]

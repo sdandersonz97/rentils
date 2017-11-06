@@ -36,9 +36,9 @@ class IncomesForm extends Component {
     }
     resetState = () => this.setState({ mount: 0, observation: '', quantity: 0})
     render(){
-        const { mount, observation, quantity  } = this.state
+        const { mount, quantity  } = this.state
         const { employeeRents, selectedRental } = this.props
-        const { tenant, price, paymentDate, rentalId } = employeeRents[selectedRental]
+        const { tenant, price, paymentDate } = employeeRents[selectedRental]
         const time = moment(paymentDate).format("DD/MM/YYYY")
         return (
                 <Card size='9'>

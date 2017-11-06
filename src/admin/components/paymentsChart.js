@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import WeekPaymentsChart from '../containers/weekPaymentsChart'
 import MonthlyPaymentsChart from '../containers/monthlyPaymentsChart'
-
+import { Link, withRouter } from 'react-router-dom'
 class PaymentsChart extends Component {
     state={
         timeline:'week'
@@ -15,6 +15,7 @@ class PaymentsChart extends Component {
     }
     render(){
         const options = this.getOptions()
+        const { companyId } = this.props.match.params
         return (
             <div className='card'>
             <div className='card-header card-chart' data-background-color={'green'}>
@@ -28,8 +29,8 @@ class PaymentsChart extends Component {
                         <span className='caret'></span>
                     </button>
                     <ul className='dropdown-menu' aria-labelledby='dropdownMenu1'>
-                        <li><a href='#' onClick={()=>this.onChangeTimeline('month')}>Monthly</a></li>
-                        <li><a href='#' onClick={()=>this.onChangeTimeline('week')}>Weekly</a></li>
+                        <li><Link to={`/company/${companyId}/admin/dashboard`} onClick={()=>this.onChangeTimeline('month')}>Monthly</Link></li>
+                        <li><Link to={`/company/${companyId}/admin/dashboard`} onClick={()=>this.onChangeTimeline('week')}>Weekly</Link></li>
                     </ul>
                 </div>
                 <h4>{options.title} </h4>
@@ -40,4 +41,4 @@ class PaymentsChart extends Component {
         )
     }
 }
-export default PaymentsChart
+export default withRouter(PaymentsChart)

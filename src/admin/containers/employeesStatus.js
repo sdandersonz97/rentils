@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, CardBody, CardHeader, Table, TableBody, TableHeader, DropdownButton } from '../../common'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { fetchCompanyEmployees } from '../actions/employees'
 import { CardStats, CardStatsBody, CardStatsFooter, CardStatsHeader } from '../../common'
 
