@@ -22,17 +22,26 @@ header {
     background-size: cover;
     background-position: center;
     height: 100vh;
-
+    overflow: hidden;
 }
 .rentils-text-box {
     position: absolute;
-    width: 1140px;
+    width: 100%;
     margin-bottom: 20px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
 }
-
+@media (min-width: 0px) and (max-width: 500px){
+    .main-text:before{
+        content: 'Rentils';
+    }
+}
+@media (min-width: 501px) {
+    .main-text:before{
+        content: 'Rentils Never was so easy keep track of your rentals.';
+    }
+}
 .main-nav {
     float: right;
     list-style: none;
