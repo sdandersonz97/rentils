@@ -22,7 +22,7 @@ class IncomesForm extends Component {
     onSubmit = (e) => {
         e.preventDefault()
         const { companyId } = this.props.match.params
-        const { employeeRents, selectedRental, onScreenChange } = this.props
+        const { employeeRents, selectedRental, onScreenChange, onSaved } = this.props
         addCompanyIncome(companyId, {
             ...this.state, 
             rentalId: employeeRents[selectedRental].rentalId,
@@ -30,6 +30,7 @@ class IncomesForm extends Component {
             tenant: employeeRents[selectedRental].tenant,
             timestamp: Date.now()
         })
+        onSaved(`Payment registered: ${this.state.mount} month of rent from ${employeeRents[selectedRental].tenant} `)
         this.resetState()
         onScreenChange('Saved', '')
     }
@@ -75,6 +76,7 @@ class IncomesForm extends Component {
                                 type='number'
                                 onChange={this.onQuantityChange}
                                 value={quantity}
+                                min={1}
                             />
                             <button type='submit' className='btn btn primary'> submit </button>
                         </form>
