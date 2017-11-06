@@ -30,7 +30,7 @@ class AccountingStatus extends Component {
                 <div className='col-lg-4 col-md-4 col-sm-4'>
                     <CardStats>
                         <CardStatsHeader icon='monetization_on' color='green' />
-                        <CardStatsBody title={incomes-expenses} category='Budge' />
+                        <CardStatsBody title={incomes-expenses} category='Budget' />
                         <CardStatsFooter/>
                     </CardStats>
                 </div>  
