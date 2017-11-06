@@ -70,6 +70,8 @@ class RentForm extends Component {
     render(){
         const { price, tenant, paymentDate, screen } = this.state
         const { rental, employees } = this.props
+        const save = Object.keys(employees) > 0 ? false : true
+        console.log(save)
         return  <Card size='9'>
                     <CardHeader 
                         title='Rent'
@@ -122,7 +124,8 @@ class RentForm extends Component {
                                 <button 
                                     key='submitRent'
                                     type='submit'  
-                                    className='btn btn primary' 
+                                    className='btn btn primary'
+                                    disabled={save}
                                 > 
                                     Save 
                                 </button>,
