@@ -1,28 +1,30 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchCompanyIncomes } from '../actions/accounting'
-import { LineChart } from '../../common'
-import { getWeekPayments } from '../../utils/helpers'
-import { withRouter } from 'react-router-dom' 
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchCompanyIncomes } from "../actions/accounting";
+import { LineChart } from "../../common";
+import { getWeekPayments } from "../../utils/helpers";
+import { withRouter } from "react-router-dom";
 class WeekPaymentsChart extends Component {
-    componentDidMount(){
-        const { companyId } = this.props.match.params
-        this.props.fetchCompanyIncomes(companyId)
-    }
-    render(){
-        return(
-            <LineChart
-                labels={['S', 'M', 'T', 'W', 'T', 'F','S']}
-                data={this.props.weekPayments}
-                title='Daily Sales'
-                cardColor='green'
-            />
-        )
-    }
+  componentDidMount() {
+    const { companyId } = this.props.match.params;
+    this.props.fetchCompanyIncomes(companyId);
+  }
+  render() {
+    return (
+      <LineChart
+        labels={["S", "M", "T", "W", "T", "F", "S"]}
+        data={this.props.weekPayments}
+        title="Daily Sales"
+        cardColor="green"
+      />
+    );
+  }
 }
-function mapStateToProps({ incomes }){
-    return { 
-        weekPayments: getWeekPayments(incomes)
-    }
+function mapStateToProps({ incomes }) {
+  return {
+    weekPayments: getWeekPayments(incomes)
+  };
 }
-export default withRouter(connect(mapStateToProps,{ fetchCompanyIncomes })(WeekPaymentsChart))
+export default withRouter(
+  connect(mapStateToProps, { fetchCompanyIncomes })(WeekPaymentsChart)
+);
