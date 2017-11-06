@@ -1,10 +1,15 @@
 import React from 'react'
-import { Card, CardBody } from '../../common'
+import { Card, CardBody, CardHeader } from '../../common'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, signup, employee, fullname, cod, error }) => {
     return(
         <Card style={!employee ? {width:'35%'} : {width:'55%'}}>
+            {employee && <CardHeader 
+                        title='Employee'
+                        category='Register an employee'
+                        color=''
+            />}
             <CardBody>
                     <form onSubmit={onSubmit}>
                         <div className='form-group'>
@@ -16,6 +21,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                         type='text'
                                         value={fullname}
                                         onChange={({ target }) => onInputChange('fullname', target.value)}
+                                        required
                                     />
                                     <div className='invalid-feedback'>
                                     </div>
@@ -27,6 +33,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                         type='text'
                                         value={cod}
                                         onChange={({ target }) => onInputChange('cod', target.value)}
+                                        required
                                     />
                                     <div className='invalid-feedback'>
                                     </div>
@@ -38,6 +45,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 onChange={({ target }) => onInputChange('email', target.value)}
                                 type='text'
                                 value={email}
+                                required
                             />
                             <div className='invalid-feedback'>
                             </div>
@@ -49,6 +57,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 type='password'
                                 value={password}
                                 onChange={({ target }) => onInputChange('password', target.value)}
+                                required
                             />
                             <div className='invalid-feedback'>
                             </div>
@@ -60,6 +69,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                     className='form-control'
                                     type='password'
                                     value={confirmPassword}
+                                    required
                                     onChange={({ target }) => onInputChange('confirmPassword', target.value)}
                                 />
                                 <div className='invalid-feedback'>
@@ -67,7 +77,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                             </div>
                         }
                         <div className='bg-danger'>{error}</div>
-                        <button type='submit' className='btn btn primary'> Log in </button>
+                        <button type='submit' className='btn btn primary'> {signup ? 'Signup' : 'Log in'} </button>
                     </form>
             </CardBody>
         </Card>
