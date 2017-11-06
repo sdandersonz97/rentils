@@ -3,6 +3,21 @@ import moment from "moment";
 const info = [7, 4];
 const warning = [3, 0];
 const alert = -1;
+export const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Agu",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dic"
+];
+export const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const errorStyle = color => {
   return {
     fontSize: 18,
@@ -44,7 +59,6 @@ export const dayLeft = paymentDate => {
 };
 
 export const getWeekPayments = payments => {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return Object.keys(payments)
     .filter(
       payment =>
@@ -64,20 +78,6 @@ export const getWeekPayments = payments => {
 };
 
 export const getMonthlyPayments = payments => {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Agu",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dic"
-  ];
   const yearAgo = Date.now() - 1000 * 60 * 60 * 24 * 365;
   return Object.keys(payments)
     .filter(payment => payments[payment].timestamp >= yearAgo)
