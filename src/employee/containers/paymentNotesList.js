@@ -12,16 +12,23 @@ class PaymentNotesList extends Component {
     renderRows = paymentNoteId => {
         const { companyId } = this.props.match.params
         const { paymentNotes } = this.props
-        return(
-            <tr key={paymentNoteId}>
-                <td>{paymentNotes[paymentNoteId].valid ? <Link to={`/company/${companyId}/user/paymentnotes/${paymentNoteId}`}> Complete </Link> : 'Completed'}</td>
+        return paymentNotes[paymentNoteId].valid
+            ?<tr key={paymentNoteId}>
+                <td><Link to={`/company/${companyId}/user/paymentnotes/${paymentNoteId}`}> Complete </Link>}</td>
                 <td>${paymentNotes[paymentNoteId].mount}</td>
                 <td>${paymentNotes[paymentNoteId].rest}</td>
                 <td>{paymentNotes[paymentNoteId].tenant}</td>
                 <td>{paymentNotes[paymentNoteId].description}</td>
                 <td>{dayLeft(paymentNotes[paymentNoteId].paymentDate)}</td>
             </tr>
-        )
+            :<tr key={paymentNoteId}>
+                <td> Completed</td>
+                <td>${paymentNotes[paymentNoteId].mount + paymentNotes[paymentNoteId].rest}</td>
+                <td>${0}</td>
+                <td>{paymentNotes[paymentNoteId].tenant}</td>
+                <td>{paymentNotes[paymentNoteId].description}</td>
+                <td>---</td> 
+            </tr>     
     }
     renderEmpty = () => (
         <tr>
