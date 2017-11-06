@@ -11,14 +11,15 @@ class ExpensesForm extends Component {
     onSubmit = (e) => {
         e.preventDefault()
         const { companyId } = this.props.match.params
-        const { selectedRental, onScreenChange } = this.props
+        const { selectedRental, onScreenChange, onSaved } = this.props
         addCompanyExpense(companyId, {
             ...this.state, 
             rentalId:selectedRental, 
             uid: localStorage.getItem('token'),
             timestamp: Date.now()
         })
-        this.resetState()
+        onSaved(`Expense added with the description of ${this.state.description} with a mount of ${this.state.mount}`)
+        this.resetState()     
         onScreenChange('saved','')
     }
     resetState = () => this.setState({ mount: 0, description: '' })

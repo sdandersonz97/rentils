@@ -9,16 +9,18 @@ import IncomesForm from '../components/incomesForm'
 import PaymentNoteForm from '../components/paymentsNotesForm'
 import { addCompanyExpense, addCompanyIncome } from '../actions/operations'
 import { dayLeft } from '../../utils/helpers'
-import { DropdownButton } from '../../common'
+import { DropdownButton, Card, CardBody } from '../../common'
 class RentalsOperations extends Component {
     state={
         screen:'RentalList',
-        selectedRental:''
+        selectedRental:'',
+        savedMessage:''
     }
     componentDidMount(){
         const { companyId } = this.props.match.params
         this.props.fetchAssignments(companyId, localStorage.getItem('token'))
     }
+    onSaved = savedMessage => this.setState({savedMessage})
     onScreenChange = (screen, selectedRental) => this.setState({ screen, selectedRental })
     renderOptions = rentalId => { 
         const { companyId } = this.props.match.params
@@ -77,7 +79,7 @@ class RentalsOperations extends Component {
     renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'DISPONIBILITY', '']}/>
     render(){
         const { employeeRentals } = this.props
-        const { selectedRental, screen } = this.state
+        const { selectedRental, screen, savedMessage } = this.state
         return (
             <section className="content">
                 <div className="container-fluid">
@@ -95,13 +97,14 @@ class RentalsOperations extends Component {
                         ? <ExpensesForm 
                             selectedRental={selectedRental}
                             onScreenChange={this.onScreenChange}
+                            onSaved={this.onSaved}
                         />
                         : screen === 'PaymentNoteForm'
                         ? <PaymentNoteForm
                             selectedRental={selectedRental}
                             onScreenChange={this.onScreenChange}
                         />
-                        : <div> Saved </div>
+                        : <Card><CardBody>{savedMessage}</CardBody></Card>
                     }
                 </div>
             </section>
