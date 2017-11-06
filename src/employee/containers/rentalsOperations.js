@@ -92,6 +92,7 @@ class RentalsOperations extends Component {
                         ? <IncomesForm
                             selectedRental={selectedRental}
                             onScreenChange={this.onScreenChange}
+                            onSaved={this.onSaved}
                         />
                         : screen === 'ExpensesForm' 
                         ? <ExpensesForm 
@@ -103,6 +104,7 @@ class RentalsOperations extends Component {
                         ? <PaymentNoteForm
                             selectedRental={selectedRental}
                             onScreenChange={this.onScreenChange}
+                            onSaved={this.onSaved}
                         />
                         : <Card><CardBody>{savedMessage}</CardBody></Card>
                     }

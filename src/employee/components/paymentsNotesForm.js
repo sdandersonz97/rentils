@@ -11,7 +11,7 @@ class PaymentNoteForm extends Component {
     }
     onSubmit = e => {
         const { companyId } = this.props.match.params
-        const { employeeRents, selectedRental, onScreenChange } = this.props
+        const { employeeRents, selectedRental, onScreenChange, onSaved } = this.props
         const rest = employeeRents[selectedRental].price - this.state.mount 
         const paymentDate = Date.now() + 1000*60*60*24*this.state.days
         e.preventDefault()
@@ -23,6 +23,7 @@ class PaymentNoteForm extends Component {
             uid: localStorage.getItem('token'),
             paymentDate 
         })
+        onSaved(`Payment note saved: ${employeeRents[selectedRental].tenant} paid ${this.state.mount} and the next charge is in ${this.state.days} days`)
         this.resetState()
         onScreenChange('RentalList')
     }
@@ -60,9 +61,13 @@ class PaymentNoteForm extends Component {
                                 type='number'
                                 value={mount}
                                 onChange={mount => this.setState({ mount })}
+                                required
                             />
                             <label>Next Charge </label>
-                            <select className='form-control' onChange={({target}) => this.setState({ days: target.value })}>
+                            <select 
+                                className='form-control' 
+                                onChange={({target}) => this.setState({ days: target.value })} 
+                                required>
                                 <option value={7}>7 days</option>
                                 <option value={15}>15 days</option>
                                 <option value={20}>20 days</option>
@@ -72,6 +77,7 @@ class PaymentNoteForm extends Component {
                                 value={description}
                                 onChange={({target}) => this.setState({ description: target.value })}
                                 placeholder='description'
+                                required
                             />
                             <button type='submit' className='btn btn primary'> submit </button>
                         </form>
