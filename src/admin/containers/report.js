@@ -5,19 +5,31 @@ import { fetchCompanyIncomes, fetchCompanyExpenses } from '../actions/accounting
 import { fetchCompanyEmployees } from '../actions/employees' 
 import { Table, TableBody, TableHeader } from '../../common'
 
-class WeekReport extends Component {
+class Report extends Component {
     componentDidMount(){
         const { companyId } = this.props.match.params
         this.props.fetchCompanyIncomes(companyId)
         this.props.fetchCompanyExpenses(companyId)
         this.props.fetchCompanyEmployees(companyId)
     }
+    getTimeForReport = () => {
+        const { time } = this.props.match.params
+        const weekAgo = 1000 * 60 * 60* 24 * 7
+        const monthAgo = 1000 * 60 * 60* 24 * 30
+        const yearAgo = 1000 * 60 * 60* 24 * 365
+        return time === 'week' ? weekAgo : time === 'month' ? monthAgo : yearAgo
+        
+    }
+    getReportName = () => {
+        const { time } = this.props.match.params
+        return time === 'week' ? 'Week Report' : time === 'month' ? 'Month Report' : 'Year Report'
+    }
     filter = type => {
         const { incomes, expenses } = this.props
-        const weekAgo = 1000 * 60 * 60* 24 * 7
+        const time = this.getTimeForReport()
         const keys = type === 'incomes' 
-            ? Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - weekAgo)
-            : Object.keys(expenses).filter(expense => expenses[expense].timestamp  >= Date.now() - weekAgo)
+            ? Object.keys(incomes).filter(income => incomes[income].timestamp  >= Date.now() - time)
+            : Object.keys(expenses).filter(expense => expenses[expense].timestamp  >= Date.now() - time)
 
         return keys
     }
@@ -62,7 +74,7 @@ class WeekReport extends Component {
         const totalExpenses = this.reduceToTotal('expenses')
         return(
             <section className='content row'>
-                <h1 className='text-center'>WEEK REPORT</h1>
+                <h1 className='text-center'>{this.getReportName()}</h1>
                 <div className='col-md-12'>
                     <h4 className='text-center'>PAYMENTS</h4>
                     <Table>
@@ -119,4 +131,4 @@ const mapStateToProps = ({ incomes, expenses, employees }) => {
         employees: employees.employeesList
     }
 }
-export default withRouter(connect(mapStateToProps, { fetchCompanyIncomes, fetchCompanyExpenses, fetchCompanyEmployees })(WeekReport))
+export default withRouter(connect(mapStateToProps, { fetchCompanyIncomes, fetchCompanyExpenses, fetchCompanyEmployees })(Report))
