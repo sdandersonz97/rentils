@@ -1,9 +1,7 @@
-import React from 'react'
-import Banner from './components/banner'
+import React from "react";
+import Banner from "./components/banner";
 const App = () => {
-    return(
-            <Banner/>
-    )
-}  
+  return <Banner />;
+};
 
-export default App
+export default App;
