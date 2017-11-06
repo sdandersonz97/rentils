@@ -8,6 +8,8 @@ export const addCompanyRental = (companyId, values) => () => {
     values.max = parseFloat(values.max)
     values.assigned = false
     values.available = true
+    values.incomes = 0
+    values.expenses = 0
     rentalsRef(companyId).child(rentalId).set(values)
     return rentalId
 }

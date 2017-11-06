@@ -47,7 +47,7 @@ class RentalForm extends Component {
         const { cod, cost, min, max, address, description, isRented } = this.state
         const { companyId } = this.props.match.params
         return (
-                <Card size='9'>
+                <Card size='7'>
                     <CardHeader 
                         title='Rental'
                         category=''

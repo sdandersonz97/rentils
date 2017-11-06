@@ -46,7 +46,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                             <label>Password: </label>
                             <input
                                 className='form-control'
-                                type='text'
+                                type='password'
                                 value={password}
                                 onChange={({ target }) => onInputChange('password', target.value)}
                             />
@@ -58,7 +58,7 @@ const AuthForm = ({ email, password, confirmPassword, onInputChange, onSubmit, s
                                 <label>Confirm Password: </label>
                                 <input
                                     className='form-control'
-                                    type='text'
+                                    type='password'
                                     value={confirmPassword}
                                     onChange={({ target }) => onInputChange('confirmPassword', target.value)}
                                 />
