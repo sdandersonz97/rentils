@@ -5,7 +5,7 @@ import { fetchAssignments } from '../actions/rentals'
 import { addCompanyRent } from '../../actions'
 import AssignedRentalListMin from '../components/assignedRentalsList'
 import { Rent } from '../../utils/constructors'
-import { TableHeader } from '../../common'
+import { TableHeader, Card, CardBody } from '../../common'
 import RentForm from '../components/rentForm'
 class AssignedRentals extends Component {
     state={
@@ -47,14 +47,7 @@ class AssignedRentals extends Component {
         const { newRent, selectedRental } = this.state
         e.preventDefault()
         addCompanyRent(companyId, {...newRent, rentalId:selectedRental })
-        this.resetState()
-    }
-    resetState = () => {
-        this.setState({
-            selectedRental: '',
-            newRent: new Rent(0,'','','',localStorage.getItem('token')),
-            screen: 'Saved'
-        })
+        this.setState({ screen: 'Saved' })
     }
     onScreenChange = screen => this.setState({ screen }) 
     renderTableHeader = () => <TableHeader titles={['SELECT','COD','ADDRESS', 'RANGE']}/>
@@ -92,7 +85,7 @@ class AssignedRentals extends Component {
                                 onSubmit={this.onSubmit}
                                 onSetRange={this.setRangeForRent}
                             />
-                        :<div>SAVED</div>}
+                        :<Card><CardBody><h3>{`Rental Rented to ${newRent.tenant} for $${newRent.price}`}</h3></CardBody></Card>}
                 
                 </div>
             </section>
