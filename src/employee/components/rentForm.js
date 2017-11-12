@@ -10,7 +10,7 @@ const RentForm = ({
   onSetRange,
   onScreenChange
 }) => {
-  const { price, tenant, paymentDate } = values;
+  const { price, tenant, paymentDate, mount } = values;
   const range = onSetRange();
   return (
     <Card size="9">
@@ -37,6 +37,15 @@ const RentForm = ({
             value={price}
             required
           />
+          <Input
+            key="mount"
+            label="Initial payment"
+            type="number"
+            onChange={onInputChange.bind(this, "mount")}
+            value={mount}
+            min={price}
+            required
+          />,
           <Input
             label="Payment Day"
             type="date"

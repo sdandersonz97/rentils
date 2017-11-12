@@ -9,13 +9,14 @@ export const Rental = (cod, cost, address, max, min, description) => {
   };
 };
 
-export const Rent = (price, tenant, paymentDate, rentalId, uid) => {
+export const Rent = (price, tenant, paymentDate, rentalId, uid, mount) => {
   return {
     price,
     tenant,
     paymentDate,
     rentalId,
-    uid
+    uid,
+    mount
   };
 };
 

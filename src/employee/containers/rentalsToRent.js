@@ -10,7 +10,7 @@ import RentForm from "../components/rentForm";
 class AssignedRentals extends Component {
   state = {
     selectedRental: "",
-    newRent: new Rent(0, "", "", "", localStorage.getItem("token")),
+    newRent: new Rent(0, "", "", "", localStorage.getItem("token"), 0),
     screen: "Rentals"
   };
   componentDidMount() {

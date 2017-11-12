@@ -19,6 +19,7 @@ class RentForm extends Component {
     tenant: "",
     paymentDate: "",
     selectedEmployee: "",
+    mount: "",
     screen: "RentForm"
   };
   componentDidMount() {
@@ -33,7 +34,7 @@ class RentForm extends Component {
   };
   onSubmit = e => {
     const { companyId, rentalId } = this.props.match.params;
-    const { price, tenant, paymentDate, selectedEmployee } = this.state;
+    const { price, tenant, paymentDate, selectedEmployee, mount } = this.state;
     const { addAssignment, history } = this.props;
     e.preventDefault();
     addCompanyRent(companyId, {
@@ -41,7 +42,8 @@ class RentForm extends Component {
       tenant,
       paymentDate,
       uid: selectedEmployee,
-      rentalId
+      rentalId,
+      mount
     });
     addAssignment(companyId, selectedEmployee, [rentalId]);
     history.push(`/company/${companyId}/admin/rentals/rental/${rentalId}`);
@@ -57,7 +59,7 @@ class RentForm extends Component {
           <input
             type="radio"
             value={employeeId}
-            onClick={this.onSelectEmployee}
+            onChange={this.onSelectEmployee}
             checked={selectedEmployee === employeeId}
           />
         </td>
@@ -79,10 +81,8 @@ class RentForm extends Component {
     }
   };
   render() {
-    const { price, tenant, paymentDate, screen } = this.state;
+    const { price, tenant, paymentDate, screen, mount, selectedEmployee } = this.state;
     const { rental, employees } = this.props;
-    const save = Object.keys(employees) > 0 ? false : true;
-    console.log(save);
     return (
       <Card size="9">
         <CardHeader
@@ -113,6 +113,15 @@ class RentForm extends Component {
                     required
                   />,
                   <Input
+                  key="mount"
+                  label="Initial payment"
+                  type="number"
+                  onChange={this.onInputChange.bind(this, "mount")}
+                  value={mount}
+                  min={price}
+                  required
+                />,
+                  <Input
                     key="paymentDay"
                     label="Payment Day"
                     type="date"
@@ -142,7 +151,7 @@ class RentForm extends Component {
                     key="submitRent"
                     type="submit"
                     className="btn btn primary"
-                    disabled={save}
+                    disabled={!selectedEmployee}
                   >
                     Save
                   </button>,
