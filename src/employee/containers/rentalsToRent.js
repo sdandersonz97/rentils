@@ -7,6 +7,7 @@ import AssignedRentalListMin from "../components/assignedRentalsList";
 import { Rent } from "../../utils/constructors";
 import { TableHeader, Card, CardBody } from "../../common";
 import RentForm from "../components/rentForm";
+import { formatNumbers } from "../../utils/helpers";
 class AssignedRentals extends Component {
   state = {
     selectedRental: "",
@@ -39,7 +40,7 @@ class AssignedRentals extends Component {
         <td>{employeeRentals[rentalId].cod}</td>
         <td>{employeeRentals[rentalId].address}</td>
         <td>
-          ${employeeRentals[rentalId].min} - ${employeeRentals[rentalId].max}
+          ${formatNumbers(employeeRentals[rentalId].min)} - ${formatNumbers(employeeRentals[rentalId].max)}
         </td>
       </tr>
     );

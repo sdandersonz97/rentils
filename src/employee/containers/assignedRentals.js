@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { fetchAssignments } from "../actions/rentals";
 import AssignedRentalListMin from "../components/assignedRentalsList";
 import { TableHeader } from "../../common";
-
+import { formatNumbers } from "../../utils/helpers";
 class AssignedRentals extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -18,7 +18,7 @@ class AssignedRentals extends Component {
         <td>{employeeRentals[rentalId].address}</td>
         <td>{employeeRentals[rentalId].available ? "AVAILABLE" : "RENTED"}</td>
         <td>
-          ${employeeRentals[rentalId].min} - ${employeeRentals[rentalId].max}
+          ${formatNumbers(employeeRentals[rentalId].min)} - ${formatNumbers(employeeRentals[rentalId].max)}
         </td>
       </tr>
     );

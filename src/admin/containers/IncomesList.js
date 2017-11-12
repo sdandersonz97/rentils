@@ -9,6 +9,7 @@ import {
   TableBody,
   TableHeader
 } from "../../common";
+import { formatNumbers } from "../../utils/helpers";
 import { fetchCompanyIncomes } from "../actions/accounting";
 import { fetchCompanyEmployees } from "../actions/employees";
 class IncomeList extends Component {
@@ -21,7 +22,7 @@ class IncomeList extends Component {
     const { incomes, employees } = this.props;
     return (
       <tr key={incomesId}>
-        <td>${incomes[incomesId].mount}</td>
+        <td>${formatNumbers(incomes[incomesId].mount)}</td>
         <td>{incomes[incomesId].tenant}</td>
         <td>{incomes[incomesId].quantity}</td>
         <td>

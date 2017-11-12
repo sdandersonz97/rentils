@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { CardStats, CardStatsBody, CardStatsHeader } from "../../common";
 import { fetchCompanyRental } from "../actions/rentals";
 import { fetchCompanyEmployees } from "../actions/employees";
+import { formatNumbers } from "../../utils/helpers";
 class RentalInfo extends Component {
   componentDidMount() {
     const { companyId, rentalId } = this.props.match.params;
@@ -20,7 +21,7 @@ class RentalInfo extends Component {
             <strong>Cod:</strong> {rental.cod} <br />
             <strong>Address:</strong> {rental.address} <br />
             <strong>Description:</strong> {rental.description} <br />
-            <strong>Range:</strong> {rental.min} - {rental.max} <br />
+            <strong>Range:</strong> {formatNumbers(rental.min)} - {formatNumbers(rental.max)} <br />
             <strong>Disponibility:</strong> {rental.assigned ? employee : "NO"}
           </p>
         </CardStatsBody>

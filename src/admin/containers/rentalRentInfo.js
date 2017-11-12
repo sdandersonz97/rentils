@@ -5,6 +5,7 @@ import { CardStats, CardStatsBody, CardStatsHeader } from "../../common";
 import { fetchRentInfo } from "../actions/rents";
 import { dayLeft } from "../../utils/helpers";
 import moment from "moment";
+import { formatNumbers } from "../../utils/helpers";
 class RentalRentInfo extends Component {
   componentDidMount() {
     const { companyId, rentalId } = this.props.match.params;
@@ -24,7 +25,7 @@ class RentalRentInfo extends Component {
               {moment(rentInfo.paymentDate).format("DD/MM/YYYY")} <br />
               <strong>Next Charge:</strong> {dayLeft(rentInfo.paymentDate)}
               <br />
-              <strong>Price:</strong> {rentInfo.price}
+              <strong>Price:</strong> {formatNumbers(rentInfo.price)}
             </p>
           ) : (
             <div style={{ marginTop: 60, textAlign: "center" }}>

@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { CardStats, CardStatsBody, CardStatsHeader } from "../../common";
 import { withRouter } from "react-router-dom";
+import { formatNumbers } from "../../utils/helpers";
 const RentalExpenses = props => {
   return (
     <CardStats>
       <CardStatsHeader icon="money_off" color="red" />
-      <CardStatsBody title={`$${props.expenses}`} category="EXPENSES" />
+      <CardStatsBody title={`$${formatNumbers(props.expenses)}`} category="EXPENSES" />
     </CardStats>
   );
 };

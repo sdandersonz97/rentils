@@ -10,7 +10,7 @@ import {
   TableHeader
 } from "../../common";
 import { fetchPaymentsNotes } from "../actions/operations";
-import { dayLeft } from "../../utils/helpers";
+import { dayLeft, formatNumbers } from "../../utils/helpers";
 class PaymentNotesList extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -27,8 +27,8 @@ class PaymentNotesList extends Component {
             Complete{" "}
           </Link>}
         </td>
-        <td>${paymentNotes[paymentNoteId].mount}</td>
-        <td>${paymentNotes[paymentNoteId].rest}</td>
+        <td>${formatNumbers(paymentNotes[paymentNoteId].mount)}</td>
+        <td>${formatNumbers(paymentNotes[paymentNoteId].rest)}</td>
         <td>{paymentNotes[paymentNoteId].tenant}</td>
         <td>{paymentNotes[paymentNoteId].description}</td>
         <td>{dayLeft(paymentNotes[paymentNoteId].paymentDate)}</td>
@@ -37,10 +37,11 @@ class PaymentNotesList extends Component {
       <tr key={paymentNoteId}>
         <td> Completed</td>
         <td>
-          ${paymentNotes[paymentNoteId].mount +
-            paymentNotes[paymentNoteId].rest}
+          ${formatNumbers(
+            paymentNotes[paymentNoteId].mount + paymentNotes[paymentNoteId].rest
+          )}
         </td>
-        <td>${0}</td>
+        <td>${formatNumbers(0)}</td>
         <td>{paymentNotes[paymentNoteId].tenant}</td>
         <td>{paymentNotes[paymentNoteId].description}</td>
         <td>---</td>

@@ -8,6 +8,7 @@ import {
 } from "../../common";
 import { withRouter } from "react-router-dom";
 import { fetchCompanyAccounting } from "../actions/accounting";
+import { formatNumbers } from "../../utils/helpers";
 class AccountingStatus extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -21,7 +22,7 @@ class AccountingStatus extends Component {
         <div className="col-lg-4 col-md-4 col-sm-4">
           <CardStats>
             <CardStatsHeader icon="attach_money" color="blue" />
-            <CardStatsBody title={incomes} category="Incomes" />
+            <CardStatsBody title={formatNumbers(incomes)} category="Incomes" />
             <CardStatsFooter
               link
               urlFooter={`/company/${companyId}/admin/incomes`}
@@ -34,7 +35,10 @@ class AccountingStatus extends Component {
         <div className="col-lg-4 col-md-4 col-sm-4">
           <CardStats>
             <CardStatsHeader icon="money_off" color="red" />
-            <CardStatsBody title={expenses} category="Expenses" />
+            <CardStatsBody
+              title={formatNumbers(expenses)}
+              category="Expenses"
+            />
             <CardStatsFooter
               link
               urlFooter={`/company/${companyId}/admin/expenses`}
@@ -47,7 +51,10 @@ class AccountingStatus extends Component {
         <div className="col-lg-4 col-md-4 col-sm-4">
           <CardStats>
             <CardStatsHeader icon="monetization_on" color="green" />
-            <CardStatsBody title={incomes - expenses} category="Budget" />
+            <CardStatsBody
+              title={formatNumbers(incomes - expenses)}
+              category="Budget"
+            />
             <CardStatsFooter />
           </CardStats>
         </div>

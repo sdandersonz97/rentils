@@ -12,7 +12,7 @@ import {
 import { withRouter, Link } from "react-router-dom";
 import { fetchCompanyRentals } from "../actions/rentals";
 import { fetchCompanyEmployees } from "../actions/employees";
-
+import { formatNumbers } from "../../utils/helpers";
 class RentalList extends Component {
   state = {
     filter: "all"
@@ -49,10 +49,10 @@ class RentalList extends Component {
         </td>
         <td>{rentalList[rentalId].address}</td>
         <td>{rentalList[rentalId].available ? "AVAILABLE" : "RENTED"}</td>
-        <td>{rentalList[rentalId].cost}</td>
+        <td>{formatNumbers(rentalList[rentalId].cost)}</td>
         <td>{rentalList[rentalId].description}</td>
         <td>
-          {rentalList[rentalId].min} - {rentalList[rentalId].max}
+          {formatNumbers(rentalList[rentalId].min)} - {formatNumbers(rentalList[rentalId].max)}
         </td>
         <td>
           {rentalList[rentalId].assigned

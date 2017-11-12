@@ -7,7 +7,7 @@ import {
 } from "../actions/accounting";
 import { fetchCompanyEmployees } from "../actions/employees";
 import { Table, TableBody, TableHeader } from "../../common";
-
+import { formatNumbers } from "../../utils/helpers";
 class Report extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -46,7 +46,7 @@ class Report extends Component {
     const { incomes, employees } = this.props;
     return (
       <tr key={incomesId}>
-        <td>${incomes[incomesId].mount}</td>
+        <td>${formatNumbers(incomes[incomesId].mount)}</td>
         <td>{incomes[incomesId].quantity}</td>
         <td>{incomes[incomesId].tenant}</td>
         <td>
@@ -62,7 +62,7 @@ class Report extends Component {
     const { expenses, employees } = this.props;
     return (
       <tr key={expensesId}>
-        <td>${expenses[expensesId].mount}</td>
+        <td>${formatNumbers(expenses[expensesId].mount)}</td>
         <td>{expenses[expensesId].description}</td>
         <td>
           {employees[expenses[expensesId].uid]
@@ -108,7 +108,7 @@ class Report extends Component {
                 <td />
                 <td />
                 <td />
-                <td>${totalIncomes}</td>
+                <td>${formatNumbers(totalIncomes)}</td>
               </tr>
             </TableBody>
           </Table>
@@ -125,7 +125,7 @@ class Report extends Component {
                 <td>TOTAL:</td>
                 <td />
                 <td />
-                <td>${totalExpenses}</td>
+                <td>${formatNumbers(totalExpenses)}</td>
               </tr>
             </TableBody>
           </Table>
@@ -138,8 +138,8 @@ class Report extends Component {
             />
             <TableBody>
               <tr>
-                <td>${totalIncomes}</td>
-                <td>${totalExpenses}</td>
+                <td>${formatNumbers(totalIncomes)}</td>
+                <td>${formatNumbers(totalExpenses)}</td>
                 <td>
                   %{this.calculatePercentageExpended(
                     totalIncomes,

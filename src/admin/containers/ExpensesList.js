@@ -11,6 +11,7 @@ import {
 } from "../../common";
 import { fetchCompanyExpenses } from "../actions/accounting";
 import { fetchCompanyEmployees } from "../actions/employees";
+import { formatNumbers } from "../../utils/helpers";
 class ExpensesList extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -21,7 +22,7 @@ class ExpensesList extends Component {
     const { expenses, employees } = this.props;
     return (
       <tr key={expensesId}>
-        <td>${expenses[expensesId].mount}</td>
+        <td>${formatNumbers(expenses[expensesId].mount)}</td>
         <td>{expenses[expensesId].description}</td>
         <td>
           {employees[expenses[expensesId].uid]

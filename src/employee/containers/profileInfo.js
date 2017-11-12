@@ -10,7 +10,7 @@ import {
 } from "../../common";
 import { fetchCompanyEmployee } from "../../actions";
 import ProfileActivity from "../components/profileActivity";
-
+import { formatNumbers } from "../../utils/helpers";
 class EmployeeInfo extends Component {
   componentDidMount() {
     const { companyId } = this.props.match.params;
@@ -67,7 +67,10 @@ class EmployeeInfo extends Component {
               iconColor="white"
               color="green"
             />
-            <CardStatsBody category="INCOMES" title={`$${employee.incomes}`} />
+            <CardStatsBody
+              category="INCOMES"
+              title={`$${formatNumbers(employee.incomes)}`}
+            />
             <CardStatsFooter
               link
               urlFooter={`/company/${companyId}/user/incomes`}
@@ -81,7 +84,7 @@ class EmployeeInfo extends Component {
             <CardStatsHeader icon="money_off" iconColor="white" color="red" />
             <CardStatsBody
               category="EXPENSES"
-              title={`$${employee.expenses}`}
+              title={`$${formatNumbers(employee.expenses)}`}
             />
             <CardStatsFooter
               link

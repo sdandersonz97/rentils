@@ -11,6 +11,7 @@ import {
 } from "../../common";
 import { withRouter, Link } from "react-router-dom";
 import { fetchCompanyEmployees } from "../actions/employees";
+import { formatNumbers } from "../../utils/helpers";
 class EmployeesList extends Component {
   state = {
     filter: "all"
@@ -42,8 +43,8 @@ class EmployeesList extends Component {
             {employeesList[uid].fullname}
           </Link>
         </td>
-        <td>${employeesList[uid].incomes}</td>
-        <td>${employeesList[uid].expenses}</td>
+        <td>${formatNumbers(employeesList[uid].incomes)}</td>
+        <td>${formatNumbers(employeesList[uid].expenses)}</td>
         <td>{employeesList[uid].rentals}</td>
         <td>{employeesList[uid].rents}</td>
       </tr>
