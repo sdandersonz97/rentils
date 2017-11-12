@@ -56,7 +56,28 @@ export const addCompanyIncome = (companyId, values) => {
       })
     );
 };
-
+export const addCompanyFirstPayment = ({companyId, mount, tenant, rentalId, uid}) => {
+  incomesRef(companyId)
+    .push({ mount, rentalId, tenant, timestamp: Date.now(), uid })
+    .then(() => updateAccountingCompany(companyId, mount, "incomes"))
+    .then(() =>
+      updateAccountingEmployee(companyId, uid, mount, "incomes")
+    )
+    .then(() =>
+      updateAccountingRental(
+        companyId,
+        rentalId,
+        mount,
+        "incomes"
+      )
+    )
+    .then(() =>
+      addEmployeeActivity(companyId, uid, {
+        type: "PAYMENT",
+        message: `Initial Payment from ${tenant} of $${mount}`
+      })
+    );
+};
 export const addPaymentNote = (companyId, values) => {
   const paymentNoteId = paymentNoteRef(companyId).push().key;
   values.mount = parseFloat(values.mount);

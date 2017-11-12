@@ -1,4 +1,5 @@
 import { FETCH_COMPANY_EMPLOYEE } from "./types";
+import { addCompanyFirstPayment } from "../employee/actions/operations"
 import {
   employeesRef,
   rentsRef,
@@ -37,6 +38,7 @@ export const addCompanyRent = (companyId, values) => {
         .then(() => rootRef().update(updates))
         .catch(er => console.log(er))
     )
+    .then(() => addCompanyFirstPayment({ companyId, mount: values.mount, rentalId: values.rentalId, tenant: values.tenant, uid: values.uid }))
     .then(() => addEmployeeActivity())
     .catch(er => console.log(er));
 };
