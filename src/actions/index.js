@@ -21,6 +21,7 @@ export const addCompanyRent = (companyId, values) => {
   const updates = {};
   values.paymentDate = Date.parse(values.paymentDate);
   values.price = parseFloat(values.price);
+  values.mount = parseFloat(values.mount)
   values.paymentNote = false;
   updates[
     `/companies/${companyId}/rentals/${values.rentalId}/available/`
