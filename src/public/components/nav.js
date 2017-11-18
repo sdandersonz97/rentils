@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => (
   <nav>
     <div className="row">
-      <div className="col col-md-12 col-sm-12 col-xs-12">
-      <ul className="main-nav" style={{marginRight:20}}>
+      <ul className="main-nav">
         <li>
           <Link to="/login">Sign in</Link>
         </li>
@@ -13,7 +12,6 @@ const Nav = () => (
         </li>
       </ul>
       </div>
-    </div>
   </nav>
 );
 export default Nav;

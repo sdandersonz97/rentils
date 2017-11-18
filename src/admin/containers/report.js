@@ -93,7 +93,7 @@ class Report extends Component {
     const totalIncomes = this.reduceToTotal("incomes");
     const totalExpenses = this.reduceToTotal("expenses");
     return (
-      <section className="content row">
+      <section className="row">
         <h1 className="text-center">{this.getReportName()}</h1>
         <div className="col-md-12">
           <h4 className="text-center">PAYMENTS</h4>
@@ -150,7 +150,7 @@ class Report extends Component {
             </TableBody>
           </Table>
         </div>
-        <button onClick={() => window.print()}> Print </button>
+        <button style={{marginLeft: 30}} className='btn' onClick={() => window.print()}> Print </button>
       </section>
     );
   }
